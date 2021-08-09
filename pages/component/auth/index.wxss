@@ -1,0 +1,28 @@
+page {
+  height: 100%;
+  background-color: white;
+}
+
+.auth {
+  height: 70%;
+}
+
+.auth>view>image {
+  width: 40%;
+  height: 300rpx;
+}
+
+/* 弹窗样式 */
+.overlay {
+  height: 100%;
+}
+
+.overlay-block {
+  width: 70%;
+  height: 20%;
+  position: relative;
+}
+
+.overlay-block-btn {
+  width: 100%;
+}

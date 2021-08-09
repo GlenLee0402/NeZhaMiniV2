@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "MineOrder": "/component/MineOrder/index",
+    "MineService": "/component/MineService/index"
+  }
+}

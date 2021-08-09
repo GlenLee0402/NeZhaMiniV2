@@ -1,0 +1,11 @@
+.img {
+  width: 250rpx;
+  height: 250rpx;
+}
+
+.position-relative>view:last-child {
+  position: absolute;
+  right: 0;
+  bottom: 10rpx;
+  /* top: 35%; */
+}

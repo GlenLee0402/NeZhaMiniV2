@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-grid": "/vantui/vant-weapp/grid/index",
+    "van-grid-item": "/vantui/vant-weapp/grid-item/index"
+  },
+  "navigationBarTitleText": "会员信息"
+}

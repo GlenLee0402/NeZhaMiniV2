@@ -1,0 +1,30 @@
+.list>view:nth-child(2) {
+  width: 100%;
+}
+
+.list>view:nth-child(2)>view:nth-child(2) {
+  width: 50%;
+}
+
+.img {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.address>view:first-child {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.address>view:last-child {
+  width: 80%;
+  margin: 40rpx auto;
+}
+
+.EMSName {
+  margin-left: 50rpx;
+}
+
+view.van-count-down {
+  color: #e03997;
+}

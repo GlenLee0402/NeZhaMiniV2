@@ -1,0 +1,33 @@
+/* .list-time {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 24rpx;
+  color: white;
+  height: 55rpx;
+  position: absolute;
+  width: 100%;
+  bottom: 0rpx;
+  z-index: 99;
+}
+
+.list-container>view:first-child {
+  height: 320rpx;
+  width: 100%;
+  border-radius: 15rpx 15rpx 0 0;
+}
+
+.times {
+  color: white;
+}
+
+.van-count-down {
+  color: #323233;
+  color: var(--count-down-text-color, #ffffff);
+  font-size: 14px;
+  font-size: var(--count-down-font-size, 14px);
+  line-height: 20px;
+  line-height: var(--count-down-line-height, 20px)
+} */
+.img {
+  width: 300rpx;
+  height: 280rpx;
+}

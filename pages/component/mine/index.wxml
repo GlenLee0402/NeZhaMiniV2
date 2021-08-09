@@ -1,0 +1,72 @@
+<scroll-view scroll-y style="height:{{app.globalData.StatusHeight-100}}px">
+  <!-- 未登陆 -->
+  <view wx:if="{{isLogin===false}}" class="margin-lr-sm padding-sm bg-white radius">
+    <view class="padding flex flex-direction">
+      <button class="cu-btn line-grey" bindtap="handleLogin">点击登陆</button>
+    </view>
+  </view>
+
+  <!-- 登陆后的个人信息 -->
+  <view wx:else class="header padding-sm">
+    <view class="position-relative flex  align-center">
+      <image lazy-load wx:if="{{User.ImageUrl === null}}" class="cu-avatar xl round bg-white"
+        src="{{IconUrl}}avatar.jpg">
+      </image>
+      <image lazy-load wx:else class="cu-avatar xl round bg-white" src="{{User.ImageUrl}}"></image>
+      <view class="margin-left">
+        <view class="text-xl"><text style="color:{{User.FontColor}}">{{User.CustomerName}}</text></view>
+        <view class="text-sm">
+          <text style="color:{{User.FontColor}}">{{User.Phone}}<text style="color:{{User.FontColor}}"
+              class="margin-sm">ID:{{User.CustomerID}}</text></text>
+        </view>
+        <view class="text-sm">
+          <text class="round members" style="border: 1px solid {{User.FontColor}};color:{{User.FontColor}}"
+            data-type="Member" bindtap="handleMeberJump">{{User.MemberCategoryName}}</text>
+          <text style="border: 1px solid {{User.FontColor}};color:{{User.FontColor}}"
+            class="round members margin-left-sm {{User.SuperVipStatus !== app.SuperVipType.Use || User.SuperVipStatus === app.SuperVipType.Stop ? 'text-decoration':''}}"
+            data-type="Share" bindtap="handleMeberJump">{{
+            User.ShareCategoryName === null ?
+            '临时星选家':User.ShareCategoryName }}</text>
+        </view>
+      </view>
+      <view class="club" bindtap="handleClub">
+        <text class="font-size14 round padding-xs"
+          style="color:{{User.FontColor}};border: 1px solid {{User.FontColor}};">赠</text>
+      </view>
+    </view>
+  </view>
+  <!-- 我的账户 -->
+  <view class="margin-sm radius padding-tb flex  justify-between bg-white align-center text-center">
+    <block wx:for="{{AccountList}}" wx:key="index">
+      <view class="text-sm padding-lr-sm" bindtap="handleAccountJump" data-url="{{item.Url}}"
+        data-title="{{item.Title}}">
+        <view><text class="text-bold">{{item.Value}}</text></view>
+        <view><text class="text-gray">{{item.Name}}</text></view>
+      </view>
+    </block>
+  </view>
+  <view class="margin-lr-sm">
+    <!-- 关注公众号-->
+    <image wx:if="{{isLogin === true && User.WeChatName !== ''}}" bindtap='handleJumpWechat'
+      data-webview="{{User.FollowArticleUrl}}" lazy-load style="width: 100%; height: 180rpx;" mode="scaleToFill"
+      src="{{User.ImageFollow}}">
+    </image>
+    <!-- 我的订单 -->
+    <MineOrder User="{{User}}"></MineOrder>
+    <!-- 更多服务 -->
+    <MineService User="{{User}}"></MineService>
+  </view>
+
+  <!-- 退出登陆 -->
+  <view wx:if="{{isLogin}}" class="margin-lr-sm">
+    <view class="flex flex-direction">
+      <button class="cu-btn margin-tb-sm bg-white" target="miniProgram" open-type="exit" bindtap="handleLoginOut"><text
+          class="text-pink">退出登陆</text></button>
+    </view>
+  </view>
+  <view class="margin-bottom-sm text-sm flex justify-center">
+    <text>哪吒智能提供技术支持</text>
+  </view>
+  <view class='cu-tabbar-height'></view>
+</scroll-view>
+<van-toast id="van-toast" />

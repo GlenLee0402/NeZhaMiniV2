@@ -1,0 +1,264 @@
+<wxs src="../../../filter/commonFilters.wxs" module="filter" />
+
+<view class="margin-lr-sm margin-tb-xs" wx:if="{{isLockBtn===false}}">
+  <!-- 地址 -->
+  <!-- 已有地址 -->
+  <view wx:if="{{Detail.IsSend===1 && Detail.AddressID!==null}}"
+    class="flex  padding-sm margin-bottom-xs align-center  bg-white radius">
+    <view>
+      <text class="cuIcon-location lg text-gray"></text>
+    </view>
+    <view class="margin-lr-sm">
+      <view class="text-df text-black"> <text>收货人:{{ Detail.CustomerAddress.AddressName }}</text>
+        <text>{{ Detail.CustomerAddress.AddressPhone }}</text>
+      </view>
+      <view class="text-sm">
+        <text class="text-gray">收货地址:{{ Detail.CustomerAddress.MerName }},{{ Detail.CustomerAddress.DetailAddress
+          }}</text>
+      </view>
+    </view>
+    <view style=" position: absolute;right: 40rpx;" bindtap="handleAddress">
+      <text class="cuIcon-right lg text-gray"></text>
+    </view>
+  </view>
+  <!-- 没有地址 -->
+  <view wx:if="{{Detail.IsSend===1 && Detail.AddressID ===null}}" class="bg-white padding-sm margin-bottom-xs">
+    <button class="cu-btn block line-gray" bindtap="handleAddress">
+      <text class="cuIcon-add text-gray">新增地址</text>
+    </button>
+  </view>
+  <!-- 商品信息 -->
+  <view class="padding-sm bg-white position: relative">
+    <view class="detail flex align-center">
+      <view>
+        <image mode="widthFix" class="width100 height100" lazy-load class="radius" src="{{Detail.MinImage}}">
+        </image>
+      </view>
+
+      <view>
+        <view class="line-height1 margin-bottom-xs">
+          <text class="text-black text-bold txte-overflow2">{{Detail.Name}}</text>
+        </view>
+        <view>
+          <text class="text-gray text-sm">{{Detail.Remark}}</text>
+        </view>
+        <view>
+          <text class="text-gray text-sm">数量x{{Detail.Num}}</text>
+          <text class="margin-left-sm text-gray  text-sm text-decoration">¥{{Detail.OriginPrice}}</text>
+        </view>
+      </view>
+
+      <view> <text class="text-red">{{'¥'+Detail.TotalAmount}}</text></view>
+    </view>
+    <view
+      class="flex {{Detail.OrderType === app.orderType.PointProject ? 'justify-between':'justify-end '}} align-center margin-top-sm">
+      <!--积分商品信息-->
+      <view class="text-sm" wx:if="{{Detail.OrderType === app.orderType.PointProject}}">
+        <text class="text-yellow" wx:if="{{Detail.Commission!==0}}">{{ Detail.TotalCommissionAmount }}{{
+          Detail.CommissionName }}</text>
+        <text wx:if="{{Detail.Point!==0}}" class="margin-lr-xs">+</text>
+        <text class="text-orange" wx:if="{{Detail.Point!==0}}">{{ Detail.TotalPointAmount +'个消费积分' }}</text>
+
+        <text wx:if="{{Detail.CouponCategoryID!==null}}" class="margin-lr-xs">+</text>
+        <text class="text-cyan" wx:if="{{Detail.CouponCategoryID!==null}}">{{ Detail.CouponAmount+'元' }}{{
+          Detail.CouponCategoryName }}</text>
+      </view>
+      <view class="cu-tag line-red sm">
+        <text class="text-red">{{filter.filtersOrderType(Detail.OrderType)}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 特殊套餐 -->
+  <view class="margin-top-xs" wx:if="{{Detail.IsSpecial===true}}">
+    <van-collapse value="{{ Active }}" bind:change="handleCollapseChange" accordion>
+      <van-collapse-item title="{{Detail.ChargeSet.Name}}" value="{{'必选套餐数量:'+ Detail.ChargeSet.SelectNum}}">
+        <!--最外层-->
+        <van-checkbox-group value="{{ ActiveChecked }}" bind:change="handleCheckChange">
+          <block wx:for="{{Detail.ChargeSet.ChargeList}}" wx:key="index">
+            <van-checkbox checked-color="#e54d42" custom-class="margin-tb-xs" disabled="{{item.disabled}}"
+              class="checkboxes-{{ index }}" icon-size="34rpx" name="{{item.ChargeID}}">
+              {{item.ChargeName}}
+            </van-checkbox>
+          </block>
+        </van-checkbox-group>
+        <!-- 子节点 -->
+        <view class="margin-left-sm">
+          <van-checkbox-group value="{{ ChildChecked }}" bind:change="onChange">
+            <block wx:for="{{Detail.ChargeSet.ChargeSetList}}" wx:key="index" wx:for-item="fi">
+              <view class="margin-left-xs">
+                <text class="text-black text-sm">{{fi.ChargeSetName}}</text>
+                <block wx:for="{{fi.ChargeList}}" wx:for-item="u" wx:key="u.ID">
+                  <van-checkbox custom-class="margin-tb-xs" name="{{u.ID}}" disabled="{{u.disabled}}" icon-size="34rpx">
+                    {{u.ChargeName}}
+                  </van-checkbox>
+                </block>
+              </view>
+            </block>
+          </van-checkbox-group>
+        </view>
+      </van-collapse-item>
+    </van-collapse>
+  </view>
+  <!-- 购买数量 -->
+  <view class="margin-top-xs bg-white">
+    <van-cell title="购买数量" title-class="text-black0 text-sm" custom-class="align-center">
+      <van-stepper value="{{ Detail.Num }}" min="1" max="{{Detail.RestNum}}" integer disable-input
+        disabled="{{Detail.OrderType === app.orderType.NewReward || Detail.OrderType === app.orderType.SuperVip || Detail.OrderType === app.orderType.PointProject || Detail.OrderType === app.orderType.Haggle}}"
+        bind:change="handleNumOnChange" />
+    </van-cell>
+  </view>
+  <!-- 支付方式 -->
+  <view class="margin-top-xs bg-white">
+    <van-cell-group>
+      <!-- 预收款 -->
+      <van-field model:value="{{ Deposit }}" bind:change="handleAmountField" bind:blur="handleBlur" data-type="Deposit"
+        type="digit" disabled="{{Detail.CanUseDepositAmount<=0}}" title-width input-align="right"
+        custom-style="padding:20rpx;" placeholder-style="font-size:24rpx;" center clearable
+        placeholder="{{Detail.CanUseDepositAmount <=0 ? '暂无可用':'使用余额'}}" error-message-align="right"
+        error-message="{{isDisabled0 === true ? '不可大于可用数量':''}}" use-label-slot>
+        <view slot="label" class="text-df">
+          余额 <text class="text-gray text-sm margin-left-lg">{{'可用:'+ Detail.CanUseDepositAmount}}</text>
+        </view>
+        <view slot="label" wx:if="{{Detail.NoUseDepositAmount>0}}" class="line-height1">
+          <view>
+            <text class="text-gray text-sm">不可使用{{Detail.NoUseDepositAmount}}</text>
+          </view>
+          <view>
+            <text class="text-gray text-sm">{{'原因：'+ Detail.DepositMessage}}</text>
+          </view>
+        </view>
+      </van-field>
+      <!-- 优惠券 -->
+      <van-field wx:if="{{Detail.CouponCategoryID ===null}}" model:value="{{ Coupon }}" bind:change="handleAmountField"
+        bind:blur="handleBlur" data-type="Coupon" type="digit"
+        disabled="{{Detail.CanUseCouponAmount <=0 || Detail.CouponCategoryID !==null}}" title-width input-align="right"
+        custom-style="padding:20rpx;" placeholder-style="font-size:24rpx;" center clearable
+        placeholder="{{Detail.CanUseCouponAmount <=0 ? '暂无可用':'请输入优惠券'}}"
+        error-message="{{isDisabled1 === true ? '不可大于可用数量':''}}" use-label-slot>
+        <view slot="label" class="text-df">
+          优惠券<text class="text-gray text-sm margin-left-sm">{{'可用:'+ Detail.CanUseCouponAmount}}</text>
+        </view>
+        <view slot="label" wx:if="{{Detail.NoUseCouponAmount>0}}" class="line-height1">
+          <view>
+            <text class="text-gray text-sm">不可使用{{Detail.NoUseCouponAmount}}</text>
+          </view>
+          <view>
+            <text class="text-gray text-sm">{{'原因：'+ Detail.CouponMessage}}</text>
+          </view>
+        </view>
+      </van-field>
+
+      <!-- 佣金 -->
+      <van-field l wx:if="{{Detail.OrderType !==app.orderType.PointProject}}" model:value="{{ Commission }}"
+        bind:change="handleAmountField" bind:blur="handleBlur" data-type="Commission" type="digit"
+        disabled="{{Detail.ProjectType===3 || Detail.CanUseCommission === 0}}" title-width input-align="right"
+        custom-style="padding:20rpx;" placeholder-style="font-size:24rpx;" center clearable
+        placeholder="{{Detail.ProjectType===3 || Detail.CanUseCommission === 0? '不可使用'+Detail.CommissionName:'使用'+Detail.CommissionName}}"
+        error-message="{{isDisabled2 === true ? '不可大于可用数量':''}}" use-label-slot>
+        <view slot="label" class="text-df">
+          {{Detail.CommissionName}}<text class="text-gray text-sm margin-left-sm">{{'剩余:'+
+            Detail.CommissionAmount}}</text>
+        </view>
+        <view slot="label" wx:if="{{Detail.CanUseCommission === 0}}" class="line-height1">
+          <text class="text-gray text-sm">当前商品不可使用{{Detail.CommissionName}}</text>
+        </view>
+      </van-field>
+
+      <!--组合支付-->
+      <!-- 优惠券 -->
+      <van-cell wx:if="{{Detail.CouponCategoryID !==null && Detail.OrderType === app.orderType.PointProject}}" center
+        custom-class="van-cell-custom-class">
+        <view slot="title">
+          <view class="van-cell-text">
+            <text>优惠券</text>
+            <text class="text-sm text-gray  margin-left-sm">{{'可用'+Detail.CanUseCouponAmount}}</text>
+            <view class="text-sm line-height1">
+              <view><text class="text-gray">{{'不可使用'+ Detail.NoUseCouponAmount }}</text></view>
+              <view><text class="text-gray">{{'原因：'+ Detail.CouponMessage }}</text></view>
+            </view>
+          </view>
+        </view>
+        <view>
+          <view><text class="text-gray text-sm margin-left-xs">{{Detail.CouponAmount}}</text>
+          </view>
+        </view>
+      </van-cell>
+      <!--佣金-->
+      <van-cell wx:if="{{Detail.TotalCommissionAmount !==0 && Detail.OrderType === app.orderType.PointProject}}" center
+        custom-class="van-cell-custom-class">
+        <view slot="title">
+          <view class="van-cell-text">
+            <text>{{Detail.CommissionName}}</text>
+            <text class="text-gray text-sm margin-left-sm">{{'剩余:' + Detail.CommissionAmount}}</text>
+          </view>
+        </view>
+        <view>
+          <view><text class="text-gray text-sm margin-left-xs">{{filter.munFormat(Detail.TotalCommissionAmount)}}</text>
+          </view>
+        </view>
+      </van-cell>
+      <!--积分-->
+      <van-cell wx:if="{{Detail.TotalPointAmount!==0 && Detail.OrderType ===app.orderType.PointProject}}">
+        <view slot="title">
+          <view class="van-cell-text">
+            <text>消费积分</text>
+            <text class="text-gray  text-sm margin-left-xs">{{'剩余:' + Detail.PointAmount}}</text>
+          </view>
+        </view>
+        <view>
+          <view><text class="text-gray  text-sm margin-left-xs">{{filter.munFormat(Detail.TotalPointAmount)}}</text>
+          </view>
+        </view>
+      </van-cell>
+    </van-cell-group>
+  </view>
+  <!-- 合计 -->
+
+  <view class="bg-white padding-sm flex justify-between">
+    <view><text class="text-black0 text-sm">合计</text></view>
+    <view>
+      <!--普通支付-->
+      <text wx:if="{{Detail.OrderType !== app.orderType.PointProject}}"
+        class="text-red text-sm">¥{{filter.munFormat(Detail.Num * Detail.TotalPrice) }}
+      </text>
+      <!--积分组合支付-->
+      <text wx:if="{{Detail.OrderType === app.orderType.PointProject}}" class="text-red text-sm">¥{{
+        Detail.TotalAmount + Detail.TotalPointAmount + Detail.TotalCommissionAmount}}
+      </text>
+    </view>
+  </view>
+  <!-- 留言 -->
+  <view class="margin-top-sm bg-white">
+    <van-cell-group>
+      <van-field title-width="2em" value="{{ message }}" label="留言" label-class="text-sm" type="textarea"
+        placeholder="留言前请协商(限100字内)" autosize border="{{ false }}" maxlength="200" />
+    </van-cell-group>
+  </view>
+
+</view>
+<view style="height:{{app.globalData.StatusHeight-80}}px;" wx:if="{{isLockBtn===true}}"
+  class="text-center bg-white flex justify-center flex-direction align-center">
+  <view> <text class="cuIcon-warn lg text-red"></text></view>
+  <view class="margin-lr-xs text-sm"> <text class="text-red">{{ErrText}}</text></view>
+  <view class="margin-top-sm">
+    <van-button type="default" size="small" plain bindtap="handleJumpBack">返回</van-button>
+  </view>
+</view>
+<!-- 支付 -->
+<view class="cu-bar tabbar bg-white shadow foot foots" wx:if="{{isLockBtn===false}}">
+  <view class="margin-left-lg">
+    <text wx:if="{{Detail.OrderType !== app.orderType.PointProject}}" class="text-black0">实付款:<text
+        class="margin-left-xs text-red">{{'¥'+filter.munFormat(Total)}}</text>
+    </text>
+    <text wx:if="{{Detail.OrderType === app.orderType.PointProject}}" class="text-black0">实付款:<text
+        class="margin-left-xs text-red">{{'¥'+filter.munFormat(PointTotal)}}</text>
+    </text>
+  </view>
+  <view class="margin-right-lg">
+    <van-button custom-style="padding:0 70rpx" disabled="{{isLockBtn}}" bindtap="handlePayConfirm" block round
+      size="small" color="#e54d42">{{Detail.OrderType === app.orderType.SuperVip ? '立即领取':'支付订单'}}
+    </van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="van-notify" />

@@ -1,0 +1,26 @@
+<view class="padding-sm bg-white">
+  <scroll-view scroll-x="true" class="scroll-view-box-x">
+    <view class="flex justify-between align-center">
+      <block wx:for="{{MenuList}}" wx:key="index">
+        <view wx:if="{{item.iconUrl !== ''}}" class="text-center margin-lr-sm" bindtap="handleJump"
+          data-url="{{item.url}}" data-index="{{index}}">
+          <image lazy-load class="round iconUrl" src="{{item.iconUrl}}" mode="scaleToFill"></image>
+          <view class="text-sm"><text>{{item.title}}</text></view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="flex justify-center align-center margin-top-sm">
+    <block wx:for="{{MenuMemberList}}" wx:key="index">
+      <view class="basis-df member" data-url="{{item.url}}" bindtap="handleJumpMember">
+        <image lazy-load class="height100 width100" src="{{item.iconUrl}}" mode="scaleToFill"></image>
+      </view>
+    </block>
+  </view>
+  <view class="radius margin-top-xs text-center member" data-url="/pages/component/memberPages/index"
+    bindtap="handleJumpMember">
+    <image lazy-load class="height100 width100" mode="scaleToFill" src="{{ImageMember}}">
+    </image>
+  </view>
+</view>
+<van-toast id="van-toast" />

@@ -1,0 +1,43 @@
+<scroll-view scroll-y style="height:{{app.globalData.StatusHeight-100}}px" scroll-into-view="{{ToAnchor}}"
+  scroll-with-animation="true" bindscrolltolower="handleLower">
+  <!-- 搜索 -->
+  <Search></Search>
+  <!-- <van-sticky scroll-top="{{ scrollTop }}" offset-top="{{ offsetTop }}">  </van-sticky> -->
+  <!-- 选择分类 -->
+  <Category CategoryType="{{1}}" FontColor="{{BasicInfo.FontColor}}" MiddleColorLeft="{{BasicInfo.MiddleColorLeft}}"
+    MiddleColorRight="{{BasicInfo.MiddleColorRight}}" bind:CategoryName="handleCategoryName">
+  </Category>
+  <!-- 滚动图 -->
+  <Banner BannerList="{{BasicInfo.ShopActivityList}}"></Banner>
+  <!-- 菜单入口 -->
+  <HomeMenu BasicInfo="{{BasicInfo}}" LiveRoom="{{LiveRoom}}"></HomeMenu>
+  <view class="bg-white">
+    <view class="adorn-bottom margin-lr-sm"></view>
+    <HomeSeckill></HomeSeckill>
+    <view class="adorn-bottom margin-lr-sm"></view>
+    <HomePinTuan></HomePinTuan>
+    <TitleTag Title="精品优选" Text="{{categoryName}}"></TitleTag>
+    <!-- 普通商品 -->
+    <view class="margin-lr-sm">
+      <view wx:if="{{ListItem.length > 0}}" class="thumb">
+        <block wx:for="{{ListItem}}" wx:key="index">
+          <view bindtap="handleJump" data-id="{{item.ID}}" class="list-container">
+            <image lazy-load class="thumb-img" src="{{item.MinImage}}"></image>
+            <view class="txte-overflow"><text>{{item.Name}}</text></view>
+            <view class="flex justify-between align-center">
+              <view>
+                <text class="text-pink text-df">{{'¥'+item.TotalPrice}}</text>
+                <text class="text-gray text-sm text-decoration margin-left-xs">¥{{item.OriginPrice}}</text>
+              </view>
+              <text class="text-gray" wx:if="{{item.BaseNum !== -1}}">已售:{{item.SaleNum}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <CommonEmpty wx:else></CommonEmpty>
+      <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+    </view>
+    <view class='cu-tabbar-height'></view>
+  </view>
+  <view id="ListItem"></view>
+</scroll-view>

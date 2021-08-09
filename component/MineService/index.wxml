@@ -1,0 +1,31 @@
+<van-cell>
+  <view slot="title">
+    <view class="van-cell-text"><text class="text-black text-bold">更多服务</text></view>
+  </view>
+</van-cell>
+<van-cell>
+  <view class="cu-list menu">
+    <!-- 星选家 -->
+    <view class="cu-item arrow" bindtap="handleShare" data-status="{{User.SuperVipStatus}}"
+      style="justify-content: flex-start;padding:0;">
+      <image lazy-load class="imageICon" mode="aspectFit" src="{{IconUrl}}/mine/service/service-share.png">
+      </image>
+      <text class="text-sm margin-left-sm">星选家</text>
+    </view>
+    <!-- 更多 -->
+    <block wx:for="{{ServerList}}" wx:key="index">
+      <view class="cu-item arrow" bindtap="handleJump" data-url="{{item.url}}" data-type="{{item.type}}"
+        style="justify-content: flex-start;padding:0;">
+        <image lazy-load class="imageICon" mode="aspectFit" src="{{item.icon}}"></image>
+        <text class="text-sm margin-left-sm">{{item.title}}</text>
+      </view>
+    </block>
+    <!-- 拨打电话 -->
+    <button class="cu-item arrow" open-type="contact" style="justify-content: flex-start;padding:0;">
+      <image lazy-load class="imageICon" mode="aspectFit" src="{{IconUrl}}/mine/service/service-kefu.png">
+      </image>
+      <text class="text-sm margin-left-sm">我的客服</text>
+    </button>
+  </view>
+</van-cell>
+<van-toast id="van-toast" />

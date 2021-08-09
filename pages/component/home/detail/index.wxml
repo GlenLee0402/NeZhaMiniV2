@@ -1,0 +1,2 @@
+<cu-custom isCustom="{{true}}"></cu-custom>
+<ProjectDetail Detail="{{Detail}}"></ProjectDetail>

@@ -1,0 +1,12 @@
+<cu-custom isText="幸运抽奖" isCustom="{{true}}"></cu-custom>
+<view>
+  <block wx:for="{{ListItem}}" wx:key="index">
+    <view class="padding-top-sm margin-lr-sm" data-id="{{item.ID}}" data-CanLucky="{{item.CanLucky}}"
+      bindtap="handleJump">
+      <view class="lucky radius">
+        <image class="width100 height100 radius luckyImg" src="{{item.ListUrl}}" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </block>
+</view>
+<van-toast id="van-toast" />

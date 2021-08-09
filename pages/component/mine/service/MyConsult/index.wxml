@@ -1,0 +1,69 @@
+<cu-custom isText="咨询评价" isCustom="{{true}}"></cu-custom>
+<Tabs Tabs="{{Tabs}}" bind:Active="handleActive"></Tabs>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="bg-white  margin-lr-sm margin-top-sm padding-sm line-height2" style="border-radius: 20rpx;">
+        <view class="flex justify-between align-center">
+          <view><text class="text-black0">{{'咨询人员:'+item.CreateUserName}}</text></view>
+          <view class="text-sm">
+            <text class="text-black0">{{'咨询时间:'+item.CreateTime}}</text>
+          </view>
+        </view>
+        <view class="flex justify-between align-center">
+          <view wx:if="{{Params.Type ===Tabs[1].Type}}" class="text-sm">
+            <text class="text-gray">{{'评价时间:'+item.EvaluationTime}}</text>
+          </view>
+          <view wx:if="{{Params.Type ===Tabs[1].Type}}">
+            <van-rate color="#e03997" size="15" disabled disabled-color="#e03997" value="{{ item.EvaluationLevel }}" />
+          </view>
+        </view>
+      </view>
+      <view class="coupon-time bg-white margin-lr-sm flex justify-between align-center padding-sm text-sm">
+        <view></view>
+        <view>
+          <van-button size="mini" color="#e03997" data-id="{{item.ConsultID}}" plain bindtap="handleEva">{{Params.Type
+            ===Tabs[0].Type ?
+            '评价':'查看'}}</van-button>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>
+<!-- 评价弹窗 wx:if="{{isShow}}" -->
+<van-overlay show="{{ isShow }}">
+  <view class="flex justify-center align-center flex-direction height100 width100">
+    <view class="evaluate radius bg-white position-relative">
+      <view class="text-center margin-tb-sm"><text class="text-lg text-black0">{{Params.Type ===Tabs[0].Type ?
+          '评价':'评价详情'}}</text>
+      </view>
+      <view class="text-sm text-center line-height2">
+        <view><text class="text-black0">{{'咨询人员:'+Detail.CreateUserName}}</text></view>
+        <view><text class="text-black0">{{'咨询时间:'+Detail.CreateTime}}</text></view>
+        <view wx:if="{{Params.Type ===Tabs[1].Type}}">
+          <text class="text-black0">{{'评价时间:'+Detail.EvaluationTime}}</text>
+        </view>
+        <view>
+          <van-rate color="#e03997" disabled="{{Params.Type ===Tabs[1].Type}}" disabled-color="#e03997"
+            model:value="{{ EvaluationLevel }}" />
+        </view>
+      </view>
+      <view class="margin-sm">
+        <textarea value="{{EvaluationContent}}" placeholder-style="color:#aaaaaa;font-size: 24rpx;"
+          disabled="{{Params.Type ===Tabs[1].Type}}" bindinput='handleTextinput' placeholder="请输入评价内容/最多100字"
+          maxlength="{{100}}">
+				<text wx:if="{{Params.Type ===Tabs[0].Type}}" class='botsum text-sm'>您已输入{{textLength}}字符</text>
+				</textarea>
+      </view>
+      <view class="margin-lg">
+        <van-button wx:if="{{Params.Type ===Tabs[0].Type}}" size="small" color="#e03997" plain block
+          custom-class="margin-bottom-sm" bindtap="handleConfirm">
+          提交评价</van-button>
+        <van-button size="small" color="#aaaaaa" plain block bindtap="handleClose">关闭</van-button>
+      </view>
+    </view>
+  </view>
+</van-overlay>
+<van-toast id="van-toast" />

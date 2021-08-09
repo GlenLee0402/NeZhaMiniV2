@@ -1,0 +1,287 @@
+// 顾客抽奖状态
+var lotteryStatus = function (value) {
+  var val;
+  switch (value) {
+    case 1:
+      val = '未参加活动'
+      break;
+    case 2:
+      val = '下轮抽奖即将开始,请耐心等待'
+      break;
+    case 3:
+      val = '很遗憾,您与奖品擦肩而过，请关注下次活动'
+      break;
+    case 4:
+      val = '恭喜您,已中奖,请前往我的中查看对应项目'
+      break;
+    case 5:
+      val = '活动已下架,请关注下次活动'
+      break;
+    case 6:
+      val = '活动已结束,请关注下次活动'
+      break;
+  }
+  return val;
+}
+// 领取限制
+var filtersLimitType = function (value) {
+
+  var val;
+  switch (value) {
+    case 0:
+      val = '无限制'
+      break;
+    case 1:
+      val = '仅限本院新客'
+      break;
+    case 2:
+      val = '仅限本院老客'
+      break;
+  }
+  return val;
+}
+// 订单商品类型
+var filtersOrderType = function (value) {
+  var val;
+  switch (value) {
+    case 1:
+      val = '精品优选'
+      break;
+    case 2:
+      val = '限时秒杀'
+      break;
+    case 3:
+      val = '多人拼团'
+      break;
+    case 4:
+      val = '新人福利包'
+      break;
+    case 5:
+      val = '赠送'
+      break;
+    case 6:
+      val = '积分商城'
+      break;
+    case 7:
+      val = '限时砍价'
+      break;
+  }
+  return val;
+}
+// 预收款(余额)变动类型
+var filterDepositType = function (value) {
+  var val;
+  switch (value) {
+    case 1:
+      val = '订单购买'
+      break
+    case 2:
+      val = '退项目获得'
+      break
+    case 3:
+      val = '退预收款'
+      break
+    case 4:
+      val = '转让'
+      break
+    case 5:
+      val = '消费使用'
+      break
+    case 6:
+      val = '数据迁移'
+      break
+  }
+  return val
+}
+// 佣金提成过滤
+var filterCommission = function (value) {
+  var val;
+  switch (value) {
+    case 1:
+      val = '订单支付'
+      break
+    case 2:
+      val = '换领待审核'
+      break
+    case 3:
+      val = '转赠'
+      break
+    case 5:
+      val = '数据迁移'
+      break
+    case 6:
+      val = '订单退款'
+      break
+    case 7:
+      val = '推荐奖励'
+      break
+    case 8:
+      val = '激励赠送'
+      break
+    case 9:
+      val = '分享家升级赠送'
+      break
+    case 10:
+      val = '手工赠送'
+      break
+    case 11:
+      val = '待换领'
+      break
+    case 12:
+      val = '已换领'
+      break
+    case 13:
+      val = '过期扣减'
+      break
+    case 14:
+      val = '抽奖消耗'
+      break
+    case 15:
+      val = '抽奖获得'
+      break
+  }
+  return val;
+}
+// 积分消费变动类型
+var filterPointType = function (value) {
+  var val;
+  switch (value) {
+    case 11:
+      val = '手工赠送'
+      break
+    case 12:
+      val = '消费赠送'
+      break
+    case 21:
+      val = '手工扣减'
+      break
+    case 22:
+      val = '兑换券'
+      break
+    case 23:
+      val = '兑换产品'
+      break
+    case 24:
+      val = '退项目扣减'
+      break
+    case 25:
+      val = '退款扣减'
+      break
+    case 26:
+      val = '数据迁移'
+      break
+    case 27:
+      val = '激励赠送'
+      break
+    case 28:
+      val = '抽奖消耗'
+      break
+    case 29:
+      val = '抽奖获得'
+      break
+  }
+  return val
+}
+// 提现
+var filterOutType = function (value) {
+  var val;
+  switch (value) {
+    case 1:
+      val = '待审核'
+      break
+    case 2:
+      val = '待换领'
+      break
+    case 3:
+      val = '审核失败'
+      break
+    case 4:
+      val = '已换领'
+      break
+    case 5:
+      val = '已取消'
+      break
+  }
+  return val
+}
+// 卡包类型
+var filtersClubType = function (value) {
+
+  var val;
+  switch (value) {
+    case 1:
+      val = '主卡'
+      break;
+    case 2:
+      val = '副卡'
+      break;
+  }
+  return val;
+}
+// 时间格式化
+var dateFormat = function (strDate, format = "yyyy-MM-dd hh:mm:ss") {
+  // 解决ios出现NaN问题
+  var realDate = strDate ? getDate(strDate.replace(getRegExp('-', 'g'), '/')) : getDate();
+  var regYear = getRegExp("(y+)", "i");
+  var date = [
+    ["M+", realDate.getMonth() + 1],
+    ["d+", realDate.getDate()],
+    ["h+", realDate.getHours()],
+    ["m+", realDate.getMinutes()],
+    ["s+", realDate.getSeconds()],
+    ["q+", Math.floor((realDate.getMonth() + 3) / 3)],
+    ["S+", realDate.getMilliseconds()],
+  ];
+  var reg1 = regYear.exec(format);
+  if (reg1) {
+    format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 - reg1[1].length));
+  }
+  for (var i = 0; i < date.length; i++) {
+    var reg2 = getRegExp("(" + date[i][0] + ")").exec(format);
+    if (reg2) {
+      format = format.replace(reg2[1], reg2[1].length == 1 ? v : ("00" + date[i][1]).substring(("" + date[i][1]).length));
+    }
+  }
+  return format;
+}
+
+// 保留两位小数
+var munFormat = function (num, dig = 2) {
+  return num.toFixed(dig);
+}
+var filtersSubStr = function (val, start, end) {
+  if (val !== null) {
+    if (val.length == 0 || val == undefined) {
+      return;
+    }
+    if (val.length > end) {
+      return val.substring(start, end) + "..";
+    } else {
+      return val;
+    }
+  }
+}
+// var isEffective = function (data) {
+//   console.log('data::::::::::::::::', data)
+//   try {
+//     if (data === undefined || data === null || data === '' || data === 'undefined') {
+//       return ''
+//     }
+//     return data
+//   } catch (e) {
+//     return ''
+//   }
+// }
+module.exports = {
+  lotteryStatus: lotteryStatus,
+  munFormat: munFormat,
+  dateFormat: dateFormat,
+  filtersLimitType: filtersLimitType,
+  filtersOrderType: filtersOrderType,
+  filterDepositType: filterDepositType,
+  filterCommission: filterCommission,
+  filterPointType: filterPointType,
+  filterOutType: filterOutType,
+  filtersClubType: filtersClubType,
+  filtersSubStr: filtersSubStr
+}

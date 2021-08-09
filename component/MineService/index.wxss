@@ -1,0 +1,4 @@
+.cu-list.menu>.cu-item.arrow:before {
+  right: 0rpx;
+  font-size: 30rpx;
+}

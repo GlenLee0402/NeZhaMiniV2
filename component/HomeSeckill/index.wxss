@@ -1,0 +1,12 @@
+.home-seckill>.img {
+  width: 220rpx;
+  height: 220rpx;
+}
+
+.home-seckill:nth-child(2) {
+  margin: 0 20rpx;
+}
+
+.name {
+  width: 220rpx;
+}

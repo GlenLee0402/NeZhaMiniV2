@@ -1,0 +1,96 @@
+<view class="head flex align-center bg-white padding-sm">
+  <view class="flex-sm">
+    <image lazy-load class="cu-avatar xl round bg-white" src="{{Detail.HeadImage}}"></image>
+  </view>
+  <view class="flex-sub margin-left-lg">
+    <view><text class="text-black0">会员号:{{Detail.CustomerID}}</text></view>
+    <view class="cu-tag radius sm line-pink">{{Detail.MemberCategoryName}}</view>
+  </view>
+  <view bindtap="handleisShow">
+    <text class="text-gray text-sm">星选家体系<text class="cuIcon-right text-gray"></text></text>
+  </view>
+</view>
+
+<view class="bg-white margin-tb-sm">
+  <van-cell>
+    <view slot="title" class="text-black text-sm">
+      {{ '本'+Detail.TimeName +'您已达到' }}
+      <text class="text-pink">{{ Detail.MemberCategoryName }}</text>
+      {{ Detail.TimeName + '结束您将免费获得' }}
+    </view>
+  </van-cell>
+  <block wx:for="{{Detail.MyEquityList}}" wx:key="index">
+    <van-cell>
+      <view slot="title" class="text-sm text-black0">
+        <view wx:if="{{item.Type ===1}}" class="margin-left-sm">
+          <text class="text-pink">{{ item.Amount }} </text>个{{ item.Name}}
+        </view>
+        <view wx:if="{{item.Type ===2}}" class="margin-left-sm">
+          价值<text class="text-pink">{{ item.Amount }}</text>元的{{ item.Name}} {{ 'x'+item.Num }}
+        </view>
+        <view wx:if="{{item.Type ===3}}" class="margin-left-sm">
+          <text class="text-pink">{{ item.Amount }}</text> 元{{ item.Name }}
+        </view>
+      </view>
+    </van-cell>
+  </block>
+</view>
+<view class="bg-white">
+  <van-cell>
+    <view slot="title" class="text-black text-sm">
+      下一级 <text wx:if="{{detail.NextMemberCategoryID !== null}}" class="text-pink">{{ Detail.NextMemberCategoryName
+        }}</text> 将免费获得
+    </view>
+  </van-cell>
+  <block wx:for="{{Detail.NextEquityList}}" wx:key="index">
+    <van-cell>
+      <view slot="title" class="text-sm text-black0">
+        <view wx:if="{{item.Type ===1}}" class="margin-left-sm">
+          <text class="text-pink">{{ item.Amount }} </text>个{{ item.Name}}
+        </view>
+        <view wx:if="{{item.Type ===2}}" class="margin-left-sm">
+          价值<text class="text-pink">{{ item.Amount }}</text>元的{{ item.Name}} {{ 'x'+item.Num }}
+        </view>
+        <view wx:if="{{item.Type ===3}}" class="margin-left-sm">
+          <text class="text-pink">{{ item.Amount }}</text> 元{{ item.Name }}
+        </view>
+      </view>
+    </van-cell>
+  </block>
+</view>
+<view class="bg-white margin-top-sm  border-Bottom text-black">
+  <van-cell>
+    <view slot="title" class="text-sm text-black">
+      <view>
+        {{ '本'+Detail.TimeName +'您的好友已累计消费' }}
+        <text class="text-pink">{{ Detail.Amount }}</text>元,距升级还差
+        <text class="text-pink">{{ Detail.NeedAmount }}</text>元
+      </view>
+      <view>
+        {{ '本'+Detail.TimeName +'您的好友首次上门人数' }}
+        <text class="text-pink">{{ Detail.PromoteNum }}</text>人,距升级还差
+        <text class="text-pink">{{ Detail.NeedPromoteNum }}</text>人
+      </view>
+    </view>
+  </van-cell>
+</view>
+
+<view class="bg-white flex justify-around align-center circle  text-sm">
+  <view class="circle-border">
+    <view class="flex justify-center align-center box bg-white">
+      <text class="text-black0">{{Detail.NeedAmount + '元'}}</text>
+    </view>
+  </view>
+  <view class="margin-lf-lg">或</view>
+  <view class="circle-border">
+    <view class="flex justify-center align-center box bg-white">
+      <text class="text-black0">{{Detail.NeedPromoteNum + '人'}}</text>
+    </view>
+  </view>
+</view>
+<van-overlay wx:if="{{isShow}}" show="{{ isShow }}" bind:click="handleisHide"
+  custom-style="display: flex;justify-content: center;">
+  <view class="bg-white radius margin-sm">
+    <image class="height100" lazy-load src="{{DetailImg}}" mode="scaleToFill"></image>
+  </view>
+</van-overlay>

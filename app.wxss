@@ -1,0 +1,130 @@
+/* colorui */
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+@import "/assets/css/listStyle.wxss";
+
+
+/* 相对定位 */
+.position-relative {
+  position: relative;
+}
+
+/* 去除button默认边框 */
+button::after {
+  border: none;
+}
+
+/* 客服按钮 */
+.contact-btn {
+  height: 95rpx;
+  line-height: 1;
+  margin: 0;
+}
+
+/* scroll-view样式 */
+.scrollPage-container {
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+/* 黑色字体颜色 */
+.text-black0 {
+  color: #000000;
+}
+
+/* 高度百分百 */
+.height100 {
+  height: 100%;
+}
+
+/* 宽度百分百 */
+.width100 {
+  width: 100%;
+}
+
+/* 间隔条 */
+.adorn-bottom {
+  background-color: #f3f4f6;
+  height: 10rpx;
+  /* width: 100%; */
+}
+
+/* 横向滚动 */
+.scroll-view-box-x {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 截取字符串 1行*/
+.txte-overflow {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* 截取字符串 2行*/
+.txte-overflow2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* 各标题左侧border */
+.titleTag {
+  border-left: 4rpx solid red;
+  padding-left: 15rpx;
+  font-weight: bold;
+}
+
+/* 删除线 */
+.text-decoration {
+  text-decoration: line-through;
+}
+
+/* 行高 */
+.line-height1 {
+  line-height: 1;
+}
+
+.line-height2 {
+  line-height: 2;
+}
+
+.line-height3 {
+  line-height: 3;
+}
+
+.line-height4 {
+  line-height: 4;
+}
+
+.line-height5 {
+  line-height: 5;
+}
+
+/* 图标大小 */
+.imageICon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 列表地步 */
+.cu-tabbar-bottom {
+  height: 40rpx;
+}
+
+/* icon水平对其 */
+.vertical-align {
+  vertical-align: middle;
+}
+
+/* 底部border */
+.border-Bottom {
+  border-bottom: 1px solid #e7ebed;
+}

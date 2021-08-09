@@ -1,0 +1,33 @@
+<cu-custom isText="积分兑换" isCustom="{{true}}"></cu-custom>
+<view class="padding-tb-xs bg-white"></view>
+<Category CategoryType="{{2}}" bind:CategoryName="handleCategoryName" bind:CategoryNameOne="handleCategoryNameOne">
+</Category>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <view class="padding-lr-sm">
+    <view wx:if="{{ListItem.length > 0}}" class="thumb">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view bindtap="handleJump" data-id="{{item.PointProjectID}}" class="list-container">
+          <image lazy-load class="thumb-img" src="{{item.MinImage}}"></image>
+          <view class="txte-overflow"><text>{{item.Name}}</text></view>
+          <view class="text-xs">
+            <text class="text-pink">¥{{item.TotalPrice}}元</text>
+            <text class="text-pink" wx:if="{{item.Point!==0}}">+{{item.Point}}消费积分</text>
+            <text class="text-pink" wx:if="{{item.Commission!==0}}">+{{item.Commission}}个{{item.CommissionName}}</text>
+            <text class="text-pink"
+              wx:if="{{item.CouponCategoryID!==null}}">+{{item.CouponAmount}}元{{item.CouponCategoryName}}</text>
+          </view>
+          <view class="flex justify-between align-center">
+            <view>
+              <text class="text-pink text-df">{{'¥'+item.TotalPrice}}</text>
+              <text class="text-gray text-sm text-decoration margin-left-xs">¥{{item.OriginPrice}}</text>
+            </view>
+            <text class="text-gray" wx:if="{{item.BaseNum !== -1}}">已售:{{item.SaleNum}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <CommonEmpty wx:else></CommonEmpty>
+    <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+  </view>
+</scroll-view>

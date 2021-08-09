@@ -1,0 +1,5 @@
+.action-custom {
+  border: 1px solid #e7ebed;
+  border-radius: 100rpx;
+  height: 80rpx;
+}

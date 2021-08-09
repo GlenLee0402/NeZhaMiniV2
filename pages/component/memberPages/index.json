@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "CommonEmpty": "/component/CommonEmpty/index",
+    "TitleTag": "/component/TitleTag/index"
+  },
+  "navigationStyle": "custom"
+}

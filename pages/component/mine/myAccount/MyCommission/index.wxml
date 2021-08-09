@@ -1,0 +1,115 @@
+<wxs src="../../../../../filter/commonFilters.wxs" module="filter" />
+<view class="send bg-white flex text-center align-center">
+  <view class="flex-twice">
+    <view class="flex justify-around">
+      <view>
+        <view><text class="text-sm text-gray">{{Detail.CommissionName+'总额'}}</text></view>
+        <view><text>{{Detail.CommissionAll+'个'}}</text></view>
+      </view>
+      <view>
+        <view><text class="text-sm text-gray">可转赠</text></view>
+        <view><text>{{Detail.CommissionCanSend+'个'}}</text></view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="flex-sub"></view> -->
+  <view class="flex-sub">
+    <view class="flex">
+      <van-button bind:click="handleSend" data-type='Out'
+        color="{{Detail.SuperVipStatus === app.SuperVipType.Use ? '#e03997':'#aaaaaa'}}" plain size="mini">
+        <text
+          class="{{Detail.SuperVipStatus === app.SuperVipType.Use ?  'text-pink':'text-decoration text-gray'}}">换领</text>
+      </van-button>
+      <van-button bind:click="handleSend" data-type='Send' color="#e03997" plain size="mini"
+        custom-class="margin-lr-sm">转赠</van-button>
+    </view>
+  </view>
+</view>
+<Tabs Tabs="{{Tabs}}" bind:Active="handleActive"></Tabs>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view wx:if="{{Params.Type !==  Tabs[2].Type }}">
+        <view class="accountList">
+          <view>
+            <view><text
+                class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{filter.filterCommission(item.Type)}}</text>
+            </view>
+            <view><text class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{item.CreateTime}}</text>
+            </view>
+          </view>
+          <view>
+            <view><text
+                class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{item.HospitalName}}</text>
+            </view>
+            <view class="text-center"><text
+                class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-pink'}}">{{item.Commission}}个</text>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{Params.Type ===  Tabs[0].Type }}" class="coupon-time text-center">
+          <block wx:for="{{PromoteList}}" wx:key="index" wx:for-item="item1">
+            <view class="line-height2">
+              <view><text class="text-sm text-gray">{{item1}}</text></view>
+              <view wx:if="{{item1===PromoteList[0]}}"><text>{{item.Amount}}</text></view>
+              <view wx:if="{{item1===PromoteList[1]}}"><text>{{item.Ratio}}</text></view>
+              <view class="text-sm {{item.FromCustomerName===''? 'margin-top-lg':''}}"
+                wx:if="{{item1===PromoteList[2]}}"><text>{{item.FromCustomerName}}</text></view>
+              <view wx:if="{{item1===PromoteList[3]}}"><text>{{item.RebateLevel}}</text></view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view wx:if="{{Params.Type ===  Tabs[2].Type }}">
+        <view class="accountList">
+          <view>
+            <view><text>{{filter.filterOutType(item.Status)}}</text></view>
+            <view><text>{{item.CreateTime}}</text> </view>
+            <view wx:if="{{item.Status===2}}"><text class="font-size12 text-gray">请到院内进行换领</text> </view>
+          </view>
+          <view class="text-center">
+            <view><text class="text-pink">{{item.Amount}}个</text>
+            </view>
+            <view><text wx:if="{{item.Status === 1}}" data-id="{{item.ID}}" bindtap="handleCancel"
+                class="text-pink text-sm">取消申请</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>
+<van-popup show="{{ isShow }}" closeable round position="bottom" custom-style="height: 40%" bind:close="handleOnClose">
+  <view class="width100 send-popup">
+    <view class="text-center text-lg"><text>{{isShowType === 'Out' ? '换领':'转赠'}}{{Detail.CommissionName}}</text></view>
+    <view>
+      <view wx:if="{{isShowType === 'Out'}}">
+        <van-field model:value="{{ Amount }}" type="number" placeholder="请输入换领数量" use-label-slot>
+          <text slot="label" class="text-black0">换领数量</text>
+        </van-field>
+      </view>
+      <view wx:else>
+        <van-field model:value="{{ SendPhone }}" type="number" placeholder="请输入手机号" use-label-slot>
+          <text slot="label" class="text-black0">手机号</text>
+        </van-field>
+        <van-field model:value="{{ Commission }}" type="number" placeholder="请输入转赠数量" use-label-slot>
+          <text slot="label" class="text-black0">转赠数量</text>
+        </van-field>
+      </view>
+      <view class="padding-sm">
+        <van-button wx:if="{{isShowType === 'Out'}}" size="small" color="#e03997" plain block
+          bindtap="handleOutConfirm">
+          确认换领
+        </van-button>
+        <van-button wx:if="{{isShowType === 'Send'}}" size="small" color="#e03997" plain block bindtap="handleConfirm">
+          确认转赠
+        </van-button>
+      </view>
+      <view class="text-center"><text class="text-sm text-gray">{{SendTip}}</text></view>
+    </view>
+  </view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" confirm-button-color="#e03997" />

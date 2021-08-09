@@ -1,0 +1,51 @@
+<view>
+  <scroll-view scroll-y style="height:{{app.globalData.StatusHeight-120}}px">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="margin-sm bg-white flex justify-between align-center padding-sm" style="line-height:1.5;"
+        data-addressID="{{item.ID}}" bindtap="handleSelected">
+        <view>
+          <view><text>{{item.AddressName}}</text><text class="margin-left-lg">{{item.AddressPhone}}</text></view>
+          <view><text class="text-sm text-gray">{{item.MerName}},{{item.DetailAddress}}</text></view>
+        </view>
+        <view>
+          <text class="edit" bindtap="handleAdd" data-type='edit' data-val="{{item}}">编辑</text>
+          <text bindtap="handleDelete" data-id="{{item.ID}}">删除</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="footer-btn">
+    <button class="cu-btn block bg-pink round" bindtap="handleAdd" data-type="add">
+      <text class="cuIcon-add text-white">新增地址</text>
+    </button>
+  </view>
+</view>
+
+<!-- 添加编辑弹窗 -->
+<van-popup wx:if="isShow" show="{{ isShow }}" closeable position="bottom" bind:close="handleAdd" data-type="close"
+  custom-style="height: 100%">
+  <view class="flex justify-center flex-direction padding-lr-sm" style="margin-top:10%;">
+    <text class="text-lg text-center margin">{{Title}}</text>
+    <van-field model:value="{{ Name }}" label="收货人" clearable placeholder="请输入收货人姓名" />
+    <van-field model:value="{{ Tel }}" label="联系方式" clearable placeholder="请输入收货人联系方式" />
+    <van-field value="{{ Area }}" center clearable bindtap="handleArea" label="省市地区" placeholder="请选择/省/市/区"
+      use-right-icon-slot>
+      <van-icon bindtap="handleArea" slot="right-icon" name="arrow" />
+    </van-field>
+    <textarea value="{{AddressDetail}}" bindinput='handleTextarea' placeholder="街道门牌、楼层房间号等信息">
+			</textarea>
+    <view class="margin-sm">
+      <button class="cu-btn block bg-pink round" bindtap="handleFormConfirm">保存</button>
+    </view>
+  </view>
+
+</van-popup>
+<!-- 选择市区 -->
+<van-popup wx:if="isAreaShow" show="{{ isAreaShow }}" position="bottom" custom-style="height: 40%">
+  <van-area value="{{isArea}}" area-list="{{ AreaList }}" columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}"
+    bind:confirm="handleAreaConfirm" bind:cancel="handleAreaClose" title="选择省/市/区" />
+</van-popup>
+
+
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" confirm-button-color="#e03997" bind:confirm="hadnelConfirm" />

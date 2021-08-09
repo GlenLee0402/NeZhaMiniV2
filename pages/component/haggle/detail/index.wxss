@@ -1,0 +1,43 @@
+/* 底部滚动列表 */
+.tab-right {
+  width: 100%;
+  height: 200rpx;
+}
+
+.right-item {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-item {
+  height: 100rpx;
+  border-bottom: 1px solid #e7ebed;
+  width: 100%;
+}
+
+.footer-end {
+  position: fixed;
+  right: 0;
+  bottom: 0rpx;
+  left: 0;
+  height: 100rpx;
+}
+
+.haglle-line {
+  height: 72rpx;
+  line-height: 55rpx;
+  border: 1px solid #fff;
+  width: 410rpx;
+}
+
+.height100>view:last-child {
+  font-size: 40rpx;
+}
+
+.win-img {
+  width: 50%;
+  /* height: 100%; */
+}
+
+@import '/assets/css/detail.wxss'

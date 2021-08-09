@@ -1,0 +1,34 @@
+<wxs src="../../../../../filter/commonFilters.wxs" module="filter" />
+<Tabs Tabs="{{Tabs}}" bind:Active="handleActive"></Tabs>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="accountList">
+        <view>
+          <view><text class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{item.AccessName}}</text>
+          </view>
+          <view><text
+              class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{item.CouponCategoryName}}</text>
+          </view>
+        </view>
+        <view>
+          <view><text class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-black'}}">{{item.HospitalName}}</text>
+          </view>
+          <view><text class="{{Params.Type !==  Tabs[0].Type ? 'text-gray':'text-pink'}}">¥{{item.Amount}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="coupon-time bg-white margin-lr-sm flex justify-between align-center padding-sm text-sm">
+        <view wx:if="{{Params.Type !== Tabs[2].Type}}">
+          <text class="text-gray" wx:if="{{Params.Type ===  Tabs[0].Type}}">{{'获得时间:'+item.CreateTime}}</text>
+          <text class="text-gray" wx:if="{{Params.Type ===  Tabs[1].Type}}">{{'使用时间:'+item.CreateTime}}</text>
+        </view>
+        <view wx:if="{{Params.Type !==  Tabs[1].Type}}">
+          <text class="text-gray">失效时间:{{item.ExpirationDate}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>

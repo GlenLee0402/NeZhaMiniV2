@@ -1,0 +1,74 @@
+.friend>view:first-child {
+  height: 430rpx;
+}
+
+.friend>view:first-child>image {
+  width: 100%;
+  height: 100%;
+}
+
+.helpTab {
+  height: 90rpx;
+  position: relative;
+  width: 100%;
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.tab-action:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 40%;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  text-align: center;
+  border-top: solid 20rpx black;
+  border-top-color: inherit;
+  border-left: solid 20rpx transparent;
+  border-right: solid 20rpx transparent;
+}
+
+.tab-action {
+  position: relative;
+  color: #ffffff;
+}
+
+/* 头像 */
+.avatar {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.sort {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 45rpx;
+}
+
+.overlay-block {
+  width: 60%;
+  height: 25%;
+  text-align: center;
+}
+
+.overlay-block>image {
+  width: 60%;
+  height: 60%;
+}
+
+.overlay-close {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  font-size: 60rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: calc(120rpx + env(safe-area-inset-bottom) / 2);
+}

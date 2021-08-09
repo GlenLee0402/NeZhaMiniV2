@@ -1,0 +1,36 @@
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-160}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="myhaggle flex  align-center padding-xs" data-id="{{item.HaggleID}}"
+        data-customerhaggleid="{{item.CustomerHaggleID}}" data-status="{{item.Status}}" bindtap="handleJump">
+        <view class="head-img">
+          <image lazy-load class="width100 height100" src="{{item.MinImage}}"></image>
+        </view>
+        <view class="margin-left-lg">
+          <view><text class="text-bold">{{item.ProjectName}}</text></view>
+          <view class="text-sm">
+            <text class="text-decoration text-gray">{{'¥'+item.OriginPrice}}</text>
+          </view>
+          <view class="text-sm">
+            <text class="text-gray">可砍至:<text
+                class="{{item.Status === 3 ? 'text-gray':'text-pink'}}">{{'¥'+item.MinPrice}}</text></text>
+            <text class="text-gray margin-left-sm">已砍至:<text
+                class="{{item.Status === 3 ? 'text-gray':'text-pink'}}">{{'¥'+item.Price}}</text></text>
+          </view>
+          <view class="text-sm">
+            <text class="text-gray">失效时间:<text
+                class="{{item.Status === 3 ? 'text-gray':'text-pink'}}">{{item.ExpirationTime}}</text></text>
+          </view>
+        </view>
+        <view class="myhaggle-right">
+          <text wx:if="{{item.Status === 1}}" class="text-pink text-df">查看进度</text>
+          <text wx:if="{{item.Status === 3}}" class="text-gray text-df">已失效</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>
+<van-toast id="van-toast" />

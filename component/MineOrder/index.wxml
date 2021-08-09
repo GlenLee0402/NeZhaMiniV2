@@ -1,0 +1,23 @@
+<view class="margin-tb-sm">
+  <van-cell is-link bindtap="handleJump" data-type="DaiZhiFu"
+    data-url="/pages/component/mine/order/index?type=DaiZhiFu">
+    <view slot="title">
+      <view class="van-cell-text"><text class="text-black text-bold">我的订单</text></view>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view class="width100 flex justify-between align-center text-center" slot="right-icon">
+      <block wx:for="{{OrderList}}" wx:key="index">
+        <view data-type="{{item.type}}" data-url="{{item.url}}" bindtap="handleJump">
+          <view>
+            <image class="imageICon" src="{{item.icon}}"></image>
+          </view>
+          <view>
+            <text class="text-sm">{{item.title}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </van-cell>
+</view>
+<van-toast id="van-toast" />

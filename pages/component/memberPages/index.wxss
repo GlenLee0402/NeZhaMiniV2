@@ -1,0 +1,20 @@
+.list>view:first-child>image {
+  width: 300rpx;
+  height: 280rpx;
+}
+
+.name {
+  line-height: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+/* 倒计时字体样式 */
+.times {
+  color: var(--red);
+  background-color: var(--redLight);
+  border-radius: 6rpx;
+  padding: 0 5rpx;
+}

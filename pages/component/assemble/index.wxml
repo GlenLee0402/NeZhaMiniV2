@@ -1,0 +1,24 @@
+<cu-custom isText="多人拼团" isCustom="{{true}}"></cu-custom>
+<TitleTag Title="拼团" Text="团购更优惠"></TitleTag>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <view class="padding-lr-sm">
+    <view wx:if="{{ListItem.length > 0}}" class="thumb">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view bindtap="handleJump" data-id="{{item.PinTuanID}}" class="list-container">
+          <image lazy-load class="thumb-img" src="{{item.MinImage}}"></image>
+          <view class="txte-overflow"><text>{{item.Name}}</text></view>
+          <view class="flex justify-between align-center">
+            <view>
+              <text class="text-pink text-df">{{'¥'+item.TotalPrice}}</text>
+              <text class="text-gray text-sm text-decoration margin-left-xs">¥{{item.OriginPrice}}</text>
+            </view>
+            <text class="text-gray" wx:if="{{item.BaseNum !== -1}}">已售:{{item.SaleNum}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <CommonEmpty wx:else></CommonEmpty>
+    <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+  </view>
+</scroll-view>

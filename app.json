@@ -1,0 +1,98 @@
+{
+  "pages": [
+
+    "pages/index/index",
+    "pages/component/search/index",
+    "pages/component/home/detail/index",
+    "pages/component/seckill/index",
+    "pages/component/seckill/detail/index",
+    "pages/component/assemble/index",
+    "pages/component/assemble/detail/index",
+    "pages/component/assemble/assembleIng/index",
+    "pages/component/haggle/index",
+    "pages/component/haggle/detail/index",
+    "pages/component/lucky/index",
+    "pages/component/lucky/detail/index",
+    "pages/component/friend/index",
+    "pages/component/friend/detail/index",
+    "pages/component/newReward/index",
+    "pages/component/newReward/detail/index",
+    "pages/component/point/index",
+    "pages/component/point/detail/index",
+    "pages/component/memberPages/index",
+    "pages/component/auth/index",
+    "pages/component/auth/phoneLogin/index",
+    "pages/component/WebViwe/index",
+    "pages/component/mine/myAddress/index",
+    "pages/component/mine/order/index",
+    "pages/component/mine/myAccount/MyDeposit/index",
+    "pages/component/mine/myAccount/MyCoupon/index",
+    "pages/component/mine/myAccount/MyCommission/index",
+    "pages/component/mine/myAccount/MyPoint/index",
+    "pages/component/mine/myAccount/MyPromote/index",
+    "pages/component/mine/service/MyAppointment/index",
+    "pages/component/mine/service/MyCharge/index",
+    "pages/component/mine/service/MyConsult/index",
+    "pages/component/mine/service/MyOperation/index",
+    "pages/component/mine/service/MyCard/index",
+    "pages/component/mine/service/MyCard/detail/index",
+    "pages/component/mine/myMember/index",
+    "pages/component/mine/myShare/index",
+    "pages/component/mine/myShare/attestation/index",
+    "pages/component/mine/myShare/attestationSuccess/index",
+    "pages/component/mine/myShare/selectList/index",
+    "pages/component/mine/myShare/selectList/detail/index",
+    "pages/component/pay/index",
+    "pages/component/pay/paySuccess/index",
+    "pages/component/openReward/index",
+    "pages/component/plivePlayer/index",
+    "component/QrCodePoster/index",
+    "component/WebViwe/WeChat/index"
+  ],
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "van-toast": "/vantui/vant-weapp/toast/index",
+    "van-search": "/vantui/vant-weapp/search/index",
+    "van-empty": "/vantui/vant-weapp/empty/index",
+    "van-sticky": "/vantui/vant-weapp/sticky/index",
+    "van-divider": "/vantui/vant-weapp/divider/index",
+    "van-overlay": "/vantui/vant-weapp/overlay/index",
+    "van-cell": "/vantui/vant-weapp/cell/index",
+    "van-cell-group": "/vantui/vant-weapp/cell-group/index",
+    "van-popup": "/vantui/vant-weapp/popup/index",
+    "van-dialog": "/vantui/vant-weapp/dialog/index",
+    "van-field": "/vantui/vant-weapp/field/index",
+    "van-stepper": "/vantui/vant-weapp/stepper/index",
+    "van-skeleton": "/vantui/vant-weapp/skeleton/index",
+    "van-count-down": "/vantui/vant-weapp/count-down/index",
+    "van-button": "/vantui/vant-weapp/button/index",
+    "van-tabbar": "/vantui/vant-weapp/tabbar/index",
+    "van-tabbar-item": "/vantui/vant-weapp/tabbar-item/index",
+    "van-progress": "/vantui/vant-weapp/progress/index",
+    "van-image": "/vantui/vant-weapp/image/index",
+    "van-loading": "/vantui/vant-weapp/loading/index"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 5000
+  },
+  "subpackages": [{
+    "root": "plivePlayer",
+    "pages": [
+      "component/plivePlayer/index"
+    ],
+    "plugins": {
+      "live-player-plugin": {
+        "version": "1.3.1",
+        "provider": "wx2b03c6e691cd7370"
+      }
+    }
+  }]
+}

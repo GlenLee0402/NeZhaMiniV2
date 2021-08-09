@@ -1,0 +1,21 @@
+.home-container-bg {
+  height: 300rpx;
+  border-bottom-right-radius: 600rpx 100rpx;
+  border-bottom-left-radius: 600rpx 100rpx;
+}
+
+.reward {
+  width: 80%;
+  height: 70%;
+}
+
+.reward-close {
+  font-size: 40rpx;
+  position: absolute;
+  bottom: 140rpx;
+  text-align: center;
+}
+
+.cuIcon-roundclose {
+  font-size: 50rpx;
+}

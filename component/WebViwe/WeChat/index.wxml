@@ -1,0 +1,3 @@
+<block>
+  <web-view previewImage src="{{url}}"></web-view>
+</block>

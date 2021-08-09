@@ -1,0 +1,20 @@
+<wxs src="../../../../../filter/commonFilters.wxs" module="filter" />
+<Tabs Tabs="{{Tabs}}" bind:Active="handleActive"></Tabs>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="accountList">
+        <view>
+          <view><text>{{filter.filterDepositType(item.Type)}}</text></view>
+          <view><text class="text-gray">{{item.CreateTime}}</text></view>
+        </view>
+        <view>
+          <view><text>{{item.HospitalName}}</text></view>
+          <view><text class="text-pink">¥{{item.Amount}}</text></view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>

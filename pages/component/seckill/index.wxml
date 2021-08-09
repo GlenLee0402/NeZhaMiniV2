@@ -1,0 +1,42 @@
+<cu-custom isText="秒杀" isCustom="{{true}}"></cu-custom>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <TitleTag Title="秒杀" Text="超值精品"></TitleTag>
+  <view wx:if="{{ListItem.length > 0}}" class="padding-tb-sm">
+    <view class="margin-lr-sm">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view bindtap="handleJump" data-id="{{item.SecKillID}}" class="flex flex-wrap align-center">
+          <view class="basis-df">
+            <image class="img" src="{{item.MinImage}}"></image>
+          </view>
+          <view class="basis-df">
+            <view class="text-bold text-df txte-overflow"><text>{{item.Name}}</text></view>
+            <view class="flex justify-between margin-top-lg">
+              <view class="cu-capsule">
+                <view class="cu-tag bg-red">{{'¥'+item.TotalPrice}}</view>
+                <view class="cu-tag line-red"> <text class="text-decoration text-gray">{{'¥'+item.OriginPrice}}</text>
+                </view>
+              </view>
+              <view class="cu-tag bg-red">去秒杀</view>
+            </view>
+            <view class="flex justify-between text-sm align-center margin-top-sm">
+              <view class="text-center">
+                <view>
+                  <text class="text-gray">{{item.isSecKill === true ? '距开始':'距结束'}}</text>
+                </view>
+                <van-count-down millisecond time="{{item.Time}}" format="DD天HH时mm分ss秒" />
+              </view>
+              <view>
+                <text wx:if="{{item.BaseNum !== -1}}" class="text-red">{{'已售:'+item.SaleNum}}</text>
+                <text wx:elseclass="text-red"> </text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="adorn-bottom"></view>
+      </block>
+    </view>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>

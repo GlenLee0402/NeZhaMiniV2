@@ -1,0 +1,134 @@
+<wxs src="../../../../filter/commonFilters.wxs" module="filter" />
+<!-- tabs -->
+<scroll-view class="bg-white nav">
+  <view class="flex text-center">
+    <block wx:for="{{TabList}}" wx:key="index">
+      <view class="cu-item flex-sub {{item.Name === Active?'text-pink cur':'text-black0'}}" bindtap="handleActive"
+        data-name="{{item.Name}}">
+        {{item.Title}}
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-130}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="bg-white margin-sm padding-sm list">
+        <view class="flex justify-between text-sm">
+          <text class="text-gray">{{'订单号:'+item.ID}}</text>
+          <text class="text-pink">{{ActiveTitle}}</text>
+        </view>
+        <view class="margin-tb-xs flex justify-between">
+          <view>
+            <image lazy-load class="radius img" src="{{item.MinImage}}"></image>
+          </view>
+          <view>
+            <view><text class="text-df txte-overflow2">{{item.ProjectName}}</text></view>
+            <view>
+              <text wx:if="{{item.CreateTime !==null && item.PaidStatus === TabList[3].Status}}"
+                class="text-gray text-sm">下单时间:{{item.CreateTime}}</text>
+              <text wx:if="{{item.PaidTime !==null && item.PaidStatus!== TabList[3].Status}}"
+                class="text-gray text-sm">支付时间:{{item.PaidTime}}</text>
+            </view>
+            <view>
+              <text class="text-gray text-sm">{{'数量x'+item.Num}}</text>
+            </view>
+          </view>
+          <view>
+            <text class="text-df">{{'¥'+item.PayAmount}}</text>
+          </view>
+        </view>
+        <view class="flex justify-between align-center">
+          <view class="cu-tag sm line-pink">{{filter.filtersOrderType(item.OrderType)}}</view>
+          <view>
+            <text class="text-gray text-sm margin-right-xs">{{'总价:¥'+item.Amount}}</text>
+            <text wx:if="{{item.OrderType !== app.orderType.PointProject}}"
+              class="text-black text-sm margin-right-xs">{{'实付:¥'+item.PayAmount}}</text>
+            <text wx:if="{{item.OrderType === app.orderType.PointProject}}" class="text-black text-sm">实付:¥<text
+                class="margin-left-xs">{{ item.PayAmount - item.UseCommission}}</text>
+            </text>
+          </view>
+        </view>
+        <view class="margin-top-xs flex justify-between align-center justify-end"
+          wx:if="{{item.PaidStatus!== TabList[3].Status}}">
+          <view wx:if="{{item.PaidStatus===TabList[1].Status && item.EMSStatus !==TabList[1].Status}}"></view>
+          <van-button wx:if="{{item.PaidStatus===TabList[1].Status && item.EMSStatus !==TabList[1].Status}}" size="mini"
+            round color="#e03997" plain data-type="EMS" data-id="{{item.ID}}" bindtap="handleStatusJump">查看物流
+          </van-button>
+          <view class="countDown flex" wx:if="{{item.ExpirationTime !==null}}">
+            <view>
+              <text class="text-pink text-sm margin-right-xs">{{ item.PaidStatus ===
+                TabList[0].Status?'等待付款:':'距拼团结束:'}}</text>
+            </view>
+            <van-count-down time="{{ item.Time }}" format="DD 天 HH 时 mm 分 ss 秒">
+            </van-count-down>
+          </view>
+          <view wx:if="{{item.PaidStatus ===TabList[0].Status}}">
+            <van-button size="mini" round color="#e03997" plain data-type="QX" data-id="{{item.ID}}"
+              bindtap="handleStatusJump">取消订单
+            </van-button>
+            <van-button wx:if="{{item.PaidStatus ===TabList[0].Status}}" class="margin-lr-xs" size="mini" round
+              color="#e03997" data-type="GoPay" data-id="{{item.ID}}" bindtap="handleStatusJump">去支付</van-button>
+          </view>
+          <van-button wx:if="{{item.PaidStatus ===TabList[2].Status}}" size="mini" round color="#e03997" plain
+            data-type="PT" data-id="{{item.PinTuanOrderID}}" bindtap="handleStatusJump">拼团详情
+          </van-button>
+
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>
+
+<van-popup show="{{ iSAddress }}" round closeable position="bottom" custom-style="height: 40%" bind:close="handleClose">
+  <view class="width100 address">
+    <view><text class="text-black0 text-lg">物流信息</text></view>
+    <view>
+      <view class="flex align-center margin-tb-sm">
+        <view>
+          <text class="cuIcon-edit lg text-black0"></text>
+          <text class="EMSName text-black0">订单号:{{SendDetail.WeChatOrderID}}</text>
+        </view>
+      </view>
+      <view class="flex justify-between align-center">
+        <view>
+          <text class="cuIcon-location lg text-black0"></text>
+        </view>
+        <view class="margin-lr-sm">
+          <view class="text-df text-black"> <text>收货人:{{ SendDetail.AddressName }}</text>
+            <text>{{ SendDetail.AddressPhone }}</text>
+          </view>
+          <view class="text-sm">
+            <text class="text-gray">收货地址:{{ SendDetail.MerName }},{{ SendDetail.DetailAddress}}</text>
+          </view>
+        </view>
+        <view>
+          <view class="cu-tag sm {{SendDetail.Status === 1 ?'line-green':'line-red'}}"> {{SendDetail.Status === 1 ?
+            '已发货':'未发货'}}
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{SendDetail.Status === 1}}" class="flex justify-between align-center margin-tb-sm">
+        <view>
+          <text class="cuIcon-taxi lg text-black0"></text>
+          <text class="EMSName text-sm text-black0">快递公司:{{SendDetail.EMSName}}</text>
+        </view>
+      </view>
+      <view wx:if="{{SendDetail.Status === 1}}" class="flex justify-between align-center margin-tb-sm">
+        <view>
+          <text class="cuIcon-edit lg text-black0"></text>
+          <text class="EMSName text-sm text-black0">快递单号:{{SendDetail.EMSNo}}</text>
+        </view>
+        <view><text class="cu-tag sm line-blue" bindtap="handleCopy">复制</text></view>
+      </view>
+      <view wx:if="{{SendDetail.Status === 1}}" class="text-center">
+        <text class="text-gray text-sm">请复制快递单号,前往{{SendDetail.EMSName}}官网查询</text>
+      </view>
+    </view>
+  </view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" confirm-button-color="#e03997" />

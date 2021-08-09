@@ -1,0 +1,44 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view is="colorui/components/cu-custom">
+      <view class="cu-custom custom--cu-custom" style="height:84px;">
+        <view class="cu-bar custom--cu-bar fixed custom--fixed"
+          style="height:84px;padding-top:44px;background-color:#ffffff">
+          <view
+            class="action custom--action border-custom custom--border-custom text-black custom--text-black sk-pseudo sk-pseudo-circle"
+            style="width: 87px; height: 32px; margin-left: calc(7px); border: none;">
+            <text class="cuIcon-back custom--cuIcon-back sk-pseudo sk-pseudo-circle"></text>
+            <text class="cuIcon-homefill custom--cuIcon-homefill sk-pseudo sk-pseudo-circle"></text>
+          </view>
+          <view class="content custom--content text-black custom--text-black font-size14 custom--font-size14"
+            style="top:44px">
+            <text class="sk-transparent sk-text-23-3333-943 sk-text" style="background-position-x: 50%;">我的卡包</text>
+          </view>
+        </view>
+      </view>
+      <view is="vantui/vant-weapp/toast/index">
+        <view is="vantui/vant-weapp/transition/index"></view>
+      </view>
+    </view>
+    <view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+      <view class="bg-white margin-sm flex justify-center" style="height: 75px;">
+        <image style="height: 150rpx;width: 150rpx;" src="../../../../../assets/loading.gif"></image>
+      </view>
+    </view>
+  </view>
+</template>

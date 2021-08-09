@@ -1,0 +1,5 @@
+.basis-lg {
+  line-height: 30rpx;
+}
+
+@import '../../index.wxss'

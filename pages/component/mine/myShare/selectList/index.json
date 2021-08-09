@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "CommonEmpty": "/component/CommonEmpty/index",
+    "TitleTag": "/component/TitleTag/index"
+  },
+  "navigationBarTitleText": "星选家特区"
+}

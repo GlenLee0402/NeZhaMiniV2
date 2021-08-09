@@ -1,0 +1,97 @@
+<view class="open-top text-white flex align-center position-relative">
+  <view class="fixed margin-left-sm">
+    <view class="action" bindtap="handleBackPage">
+      <text class="cuIcon-back text-lg text-white"></text>
+    </view>
+  </view>
+  <view class="content text-lg">
+    <text class=" text-white text-lg">领取中心</text>
+  </view>
+</view>
+<view class="open-container padding-top-lg">
+  <view class="content radius padding-bottom-sm">
+    <view>
+      <image lazy-load="true" mode="scaleToFill" src="{{IconUrl}}newimages/open.png"></image>
+    </view>
+    <block wx:if="{{Detail.ChargeList.length !== 0}}" wx:for="{{Detail.ChargeList}}" wx:key="index">
+      <view class="content-list flex radius align-center">
+        <view><text class="text-white">¥{{item.Price}}</text></view>
+        <view class="margin-left-sm">
+          <view><text class="text-black text-bold text-hidden">{{item.ChargeName}}</text></view>
+          <view>
+            <text wx:if="{{item.ExpirationDate ===null}}" class="text-gray text-sm">无限制</text>
+            <text wx:if="{{item.ExpirationDate !==null}}" class="text-gray text-sm">有效期至:{{item.ExpirationDate}}</text>
+          </view>
+        </view>
+        <view class="isCheck" wx:if="{{Detail.NewRewardFree === 1}}">
+          <text class="text-red" data-url="/pages/component/mine/service/MyCharge/index" bindtap="handleJump">查看</text>
+        </view>
+      </view>
+    </block>
+    <block wx:key="index" wx:if="{{Detail.CouponList.length !== 0}}" wx:for="{{Detail.CouponList}}">
+      <view class="content-list flex radius align-center">
+        <view><text class="text-white">¥{{item.Amount}}</text></view>
+        <view class="margin-left-sm">
+          <view><text class="text-black  text-bold  text-hidden">{{item.CouponCategoryName}}</text></view>
+          <view>
+            <text wx:if="{{item.ExpirationDate ===null}}" class="text-gray text-sm">无限制</text>
+            <text wx:if="{{item.ExpirationDate !==null}}" class="text-gray text-sm">有效期至:{{item.ExpirationDate}}</text>
+          </view>
+        </view>
+        <view wx:if="{{Detail.NewRewardFree === 1}}" class="isCheck">
+          <text class="text-red" data-url="/pages/component/mine/myAccount/MyCoupon/index?title=我的优惠券"
+            bindtap="handleJump">查看</text>
+        </view>
+      </view>
+    </block>
+    <!-- 佣金 -->
+    <view wx:if="{{Detail.Commission !==0}}" class="content-list flex radius align-center">
+      <view><text class="text-white">{{Detail.Commission}}</text></view>
+      <view class="margin-left-sm">
+        <view><text class="text-black text-bold  text-hidden">{{Detail.CommissionName}}</text></view>
+      </view>
+      <view wx:if="{{Detail.NewRewardFree === 1}}" class="isCheck">
+        <text class="text-red"
+          data-url="/pages/component/mine/myAccount/MyCommission/index?title=我的{{Detail.CommissionName}}"
+          bindtap="handleJump">查看</text>
+      </view>
+    </view>
+    <!-- 积分 -->
+    <view wx:if="{{Detail.Point !==0}}" class="content-list flex radius align-center">
+      <view><text class="text-white">{{Detail.Point}}</text></view>
+      <view class="margin-left-sm">
+        <view><text class="text-black text-bold">消费积分</text></view>
+      </view>
+      <view wx:if="{{Detail.NewRewardFree === 1}}" class="isCheck">
+        <text class="text-red" data-url="/pages/component/mine/myAccount/MyPoint/index?title=我的消费积分"
+          bindtap="handleJump">查看</text>
+      </view>
+    </view>
+    <!-- 抽奖次数-->
+    <view wx:if="{{Detail.Lucky !==0}}" class="content-list flex radius align-center">
+      <view><text class="text-white">{{Detail.Lucky}}次</text></view>
+      <view class="margin-left-sm">
+        <view><text class="text-black text-bold">抽奖次数</text></view>
+      </view>
+      <view wx:if="{{Detail.NewRewardFree === 1}}" class="isCheck">
+        <text class="text-red" data-url="/pages/component/lucky/index" bindtap="handleJump">查看</text>
+      </view>
+    </view>
+    <view class="open-btn margin-lg">
+      <van-button wx:if="{{Detail.NewRewardFree === 0}}" color="#fa6049" type="primary" round size="small" block
+        bind:click="handleConfirm" loading="{{isLockBtn}}" disabled="{{isLockBtn}}">
+        <text class="text-lg text-white">立即领取</text>
+      </van-button>
+      <van-button wx:if="{{Detail.NewRewardFree === 1}}" color="#fa6049" type="primary" round size="small" block
+        bind:click="handleGoHome">
+        <text class="text-white">去购物</text>
+      </van-button>
+    </view>
+  </view>
+  <view class="margin-sm">
+    <image bindtap='handleJumpWechat' data-webview="{{Detail.FollowArticleUrl}}" lazy-load="true"
+      style="width: 100%; height: {{90}}px;" mode="scaleToFill" src="{{Detail.ImageFollow}}">
+    </image>
+  </view>
+</view>
+<van-toast id="van-toast" />

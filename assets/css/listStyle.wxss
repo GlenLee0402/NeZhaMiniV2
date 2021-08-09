@@ -1,0 +1,29 @@
+.thumb {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.list-container {
+  width: 49%;
+  border-radius: 10rpx;
+  padding-bottom: 15rpx;
+}
+
+.list-container>image {
+  height: 320rpx;
+  width: 100%;
+  border-radius: 15rpx 15rpx 0 0;
+}
+
+.list-container>view>image {
+  height: 320rpx;
+  width: 100%;
+  border-radius: 15rpx 15rpx 0 0;
+}
+
+/* 字体默认颜色 */
+text {
+  /* color: #000000; */
+  color: #232323;
+}

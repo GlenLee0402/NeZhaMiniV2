@@ -1,0 +1,21 @@
+.evaluate {
+  height: 42%;
+  width: 90%;
+}
+
+textarea {
+  height: 200rpx;
+  border: 1rpx solid #e7ebed;
+  position: relative;
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+  margin: 0 auto;
+}
+
+.botsum {
+  position: absolute;
+  bottom: 5rpx;
+  right: 10rpx;
+}
+
+@import '../../index.wxss'

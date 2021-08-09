@@ -1,0 +1,10 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed"
+    style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background: linear-gradient(to right, {{ColorLeft}}, {{ColorRight}});">
+    <view class="content text-black font-size14" style="top:{{StatusBar}}px">
+      <text style="color:{{FontColor}}">{{isText}}</text>
+      <slot name="content"></slot>
+    </view>
+    <slot name="right"></slot>
+  </view>
+</view>

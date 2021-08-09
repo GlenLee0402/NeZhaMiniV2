@@ -1,0 +1,10 @@
+<scroll-view scroll-x="true" class="scroll-view-box-x position-relative">
+  <view class="category flex" style="background: linear-gradient(to right, {{MiddleColorLeft}}, {{MiddleColorRight}});">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="margin-lr-sm" bindtap="handleActive" data-name="{{item.Name}}" data-index="{{index}}">
+        <text class="text-df"
+          style="color:{{FontColor}}; border-bottom:{{index === TabCur ? '2px solid ' + FontColor:''}}">{{item.Name}}</text>
+      </view>
+    </block>
+  </view>
+</scroll-view>

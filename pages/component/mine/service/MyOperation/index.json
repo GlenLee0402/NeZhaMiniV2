@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "Tabs": "/component/Tabs/index",
+    "CommonEmpty": "/component/CommonEmpty/index",
+    "van-rate": "/vantui/vant-weapp/rate/index"
+  },
+  "navigationStyle": "custom"
+}

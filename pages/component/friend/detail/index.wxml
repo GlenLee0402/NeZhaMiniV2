@@ -1,0 +1,137 @@
+<cu-custom isText="手拉手" isCustom="{{true}}" bgColor="{{Detail.DefaultColor}}"></cu-custom>
+<view class="friend">
+  <!-- 头部 -->
+  <view>
+    <image mode="scaleToFill" lazy-load src="{{Detail.ImageHeadUrl}}"></image>
+  </view>
+  <!-- 切换 -->
+  <view class="flex justify-between align-center">
+    <block wx:for="{{HelpTab}}" wx:key="index">
+      <view
+        style="background-color:{{index  === CurIndex ? Detail.SelectColor:Detail.DefaultColor}};border-top-color:{{index  === CurIndex ? Detail.SelectColor:''}};color:{{index  === CurIndex ? '':Detail.SelectColor}};"
+        class="helpTab {{index  === CurIndex ?'tab-action':''}}" data-index="{{index}}" data-name="{{item.name}}"
+        bindtap="handleActive">
+        {{item.title}}</view>
+    </block>
+  </view>
+  <!-- index  === CurIndex ? 'background-color:'+Detail.SelectColor+';'+'border-top-color:'+Detail.SelectColor:'background-color:'+Detail.DefaultColor+';' + 'color:'+Detail.SelectColor -->
+  <!-- 显示内容 -->
+  <view class="margin-sm">
+    <!-- 榜单排名 -->
+    <view wx:if="{{CurName==='Ranking'}}" style="background-color:{{Detail.DefaultColor}}">
+      <view style="border-bottom: 2rpx solid {{Detail.SelectColor}};" class="text-center padding-tb-xs"><text
+          class="text-lg">榜单排名</text></view>
+      <scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight/2-60}}px;"
+        bindscrolltolower="handleLower" data-type="Ranking">
+        <block wx:for="{{Detail.JoinList}}" wx:key="index">
+          <view class="padding-sm flex align-center position-relative ranking">
+            <view class="sort round margin-right-sm {{item.Sort < 4 ? 'bg-red':''}}">{{item.Sort}}</view>
+            <view>
+              <image class="avatar radius" src="{{item.CustomerImage}}"></image>
+            </view>
+            <view style="width:300rpx" class="margin-left-lg line-height2">
+              <view><text class="txte-overflow">{{item.CustomerName}}</text></view>
+              <view class="text-sm"><text>票数：<text style="color:{{Detail.FontColor}}">{{item.Num}}</text></text></view>
+            </view>
+            <view>
+              <van-button disabled="{{isBtnLock}}" type="primary" size="small" color="{{Detail.SelectColor}}"
+                data-customerID="{{item.CustomerID}}" bindtap="handleJoin">给他投票
+              </van-button>
+            </view>
+          </view>
+        </block>
+        <van-divider dashed contentPosition="center">已经到底了</van-divider>
+      </scroll-view>
+    </view>
+    <!-- 我的投票 -->
+    <view wx:if="{{CurName==='MyHelp'}}">
+      <view wx:if="{{MyHelpListItme.length !== 0}}" class="padding-lr-sm"
+        style="background-color:{{Detail.DefaultColor}}">
+        <view style="border-bottom: 2rpx solid {{Detail.SelectColor}};"
+          class="flex justify-between align-center padding-xs">
+          <view><text class="">看谁最给力</text></view>
+          <view><text class="text-gray">票数</text></view>
+        </view>
+        <scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight/2-70}}px;"
+          bindscrolltolower="handleLower" data-type="MyHelp">
+          <block wx:for="{{MyHelpListItme}}" wx:key="index">
+            <view class="flex  margin-top-xs align-center position-relative radius">
+              <view>
+                <image class="avatar" src="{{item.FriendCustomerImage}}">
+                </image>
+              </view>
+              <view class="margin-left-lg" style="line-height: 45rpx;">
+                <view><text>{{item.FriendCustomerName}}</text></view>
+                <view><text class="text-gray text-sm">{{item.CreateTime}}</text></view>
+              </view>
+              <view style="position: absolute;right: 20rpx;"><text
+                  style="color:{{Detail.FontColor}}">+{{item.Num}}</text>
+              </view>
+            </view>
+          </block>
+          <van-divider dashed contentPosition="center">已经到底了</van-divider>
+        </scroll-view>
+      </view>
+      <CommonEmpty wx:else ErrorTitle='暂无投票，快来分享好友参加吧'></CommonEmpty>
+    </view>
+    <!-- 活动详情 -->
+    <view wx:if="{{CurName==='Rule'}}" class="radius">
+      <image mode="widthFix" lazy-load class="help-img width100" src="{{Detail.ImageDetailUrl}}">
+      </image>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
+  <!-- 我的助力底部信息 -->
+  <view class="footer bg-white padding-lr-sm">
+    <!-- 已经参与 -->
+    <view wx:if="{{Detail.IsJoin === 1}}" class="position-relative margin-top-xs flex align-center padding-lr-sm">
+      <view class="sort round margin-right-sm" style="background-color:{{Detail.SelectColor}}">
+        <text class="text-white">{{Detail.CustomerSort}}</text>
+      </view>
+      <view>
+        <image class="avatar radius" src="{{Detail.CustomerImage}}"></image>
+      </view>
+      <view style="width:300rpx" class="margin-left-lg line-height2">
+        <view><text class="txte-overflow">{{Detail.CustomerName}}</text></view>
+        <view class="text-sm"><text>票数：<text style="color:{{Detail.FontColor}}">{{Detail.CustomerNum}}</text></text>
+        </view>
+      </view>
+      <view>
+        <van-button type="primary" bindtap="handleHelp" size="small" color="{{Detail.SelectColor}}"
+          data-customerID="{{item.CustomerID}}">分享拉票
+        </van-button>
+      </view>
+    </view>
+    <!-- 本人未参与 -->
+    <view class="padding-sm margin-top-xs text-center" wx:if="{{Detail.IsJoin===0}}">
+      <van-button wx:if="{{Detail.Status===1}}" block type="primary" bindtap="handleJoin" data-type="{{false}}"
+        color="{{Detail.SelectColor}}" size="normal">参与投票</van-button>
+      <text wx:else class="text-red">活动已经结束</text>
+    </view>
+  </view>
+</view>
+<!-- 好友助力弹窗 -->
+<van-overlay show="{{ isShow }}">
+  <view class="flex justify-center align-center flex-direction height100">
+    <view class="overlay-block radius padding-lg position-relative bg-white">
+      <image mode="scaleToFill" src="{{Detail.FriendCustomerImage}}"></image>
+      <view>
+        <text>{{Detail.FriendCustomerName}}</text>
+      </view>
+      <view>
+        <text>票数:<text style="color:{{Detail.FontColor}}">{{Detail.FriendNum}}</text></text>
+      </view>
+      <view>
+        <van-button type="primary" size="small" color="{{Detail.SelectColor}}"
+          data-customerID="{{Detail.FriendCustomerID}}" data-type="{{true}}" bindtap="handleJoin">帮好友助力</van-button>
+      </view>
+      <view class="overlay-close" bindtap="handleClose">
+        <text class="cuIcon-roundclose text-white"></text>
+      </view>
+    </view>
+  </view>
+</van-overlay>
+
+<ShareType isShow="{{isShareShow}}" QrParams="{{QrParams}}"></ShareType>
+
+<van-toast id="van-toast" />

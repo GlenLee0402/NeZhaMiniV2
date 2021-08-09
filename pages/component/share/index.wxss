@@ -1,0 +1,54 @@
+.share-bg {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 88%;
+}
+
+.share-content {
+  width: 80%;
+  margin: 0 auto;
+  color: #616060;
+  margin-top: 103%;
+  height: 33%;
+}
+
+.data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  line-height: 3;
+}
+
+.share-button {
+  border: none !important;
+  height: 82rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.iconItem {
+  text-align: center;
+}
+
+.iconList {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.footer {
+  position: fixed;
+  bottom: 200rpx;
+  width: 80%;
+  margin: 0 40rpx;
+}

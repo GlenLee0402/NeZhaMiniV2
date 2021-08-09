@@ -1,0 +1,21 @@
+<view class="text-center padding-bottom-lg flex justify-center flex-direction" wx:if="{{isOpen === false}}">
+  <view>
+    <image lazy-load="true" style="width:200rpx;height:200rpx;" src="{{IconUrl}}newimages/succee.png"></image>
+  </view>
+  <view wx:if="{{Status === 0}}"> <text class="text-black0">提交成功!</text></view>
+  <view>
+    <text class="text-black0">{{StatusText}}</text>
+  </view>
+  <view wx:if="{{Status === 1}}" class="margin-top-lg">
+    <text class="text-black0">正在为您跳转页面</text>
+    <view>{{Time}}</view>
+  </view>
+  <view wx:if="{{Status === 0}}" class="margin-top-lg">
+    <van-button type="default" size="small" plain bindtap="handleJumpHome">返回首页</van-button>
+  </view>
+</view>
+<van-overlay show="{{ isOpen }}">
+  <view class="height100 flex justify-center align-center">
+    <van-loading type="spinner" color="#ffffff" vertical><text class="text-white"></text></van-loading>
+  </view>
+</van-overlay>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-area": "/vantui/vant-weapp/area/index",
+    "van-icon": "/vantui/vant-weapp/icon/index"
+  },
+  "navigationBarTitleText": "地址管理"
+}

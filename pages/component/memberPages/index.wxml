@@ -1,0 +1,67 @@
+<wxs src="../../../filter/commonFilters.wxs" module="filter" />
+<cu-custom isText="特权专区" isCustom="{{true}}"></cu-custom>
+<TitleTag Title="特权专区" Text="特权专享"></TitleTag>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-100}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view bindtap="handleJump" data-item="{{item}}" class="padding-sm flex list align-center">
+        <view>
+          <image src="{{item.MinImage}}"></image>
+        </view>
+        <view class="margin-left-sm" style="width:55%;">
+          <view class="text-bold text-black name"><text>{{item.Name}}</text></view>
+          <view class="flex justify-between align-center">
+            <view class="cu-capsule">
+              <view class="cu-tag bg-red">
+                <text wx:if="{{item.OrderType !==app.orderType.PinTuan}}" style="color:white;"
+                  class="text-decoration">{{'¥'+item.OriginPrice}}</text>
+                <text wx:if="{{item.OrderType===app.orderType.PinTuan}}"
+                  style="color:white;">{{item.PeopleNum}}人团</text>
+              </view>
+              <view class="cu-tag line-red">
+                ¥{{item.TotalPrice}}
+              </view>
+            </view>
+            <view wx:if="{{item.OrderType===app.orderType.Project}}" class="cu-tag bg-red">去购买</view>
+            <view wx:if="{{item.OrderType===app.orderType.SecKill}}" class="cu-tag bg-red">去秒杀</view>
+            <view wx:if="{{item.OrderType===app.orderType.PinTuan}}" class="cu-tag bg-red">去拼团</view>
+            <view wx:if="{{item.OrderType===app.orderType.PointProject}}" class="cu-tag bg-red">去兑换</view>
+          </view>
+          <view class="flex justify-between align-center margin-top-sm">
+            <!-- 秒杀 -->
+            <view wx:if="{{item.OrderType===app.orderType.SecKill}}" class="font-size12">
+              <view> <text class="text-gray margin-right-xs">距秒杀{{isSecKill}}还有</text></view>
+              <van-count-down use-slot time="{{ time }}" bind:change="handleTimeChange">
+                <text class="times text-sm">{{ TimeData.days }}天</text>
+                <text class="margin-lr-xs">:</text>
+                <text class="times text-sm">{{ TimeData.hours }}时</text>
+                <text class="margin-lr-xs">:</text>
+                <text class="times text-sm">{{ TimeData.minutes }}分</text>
+                <text class="margin-lr-xs">:</text>
+                <text class="times text-sm">{{ TimeData.seconds }}秒</text>
+              </van-count-down>
+            </view>
+            <!-- 积分 -->
+            <view wx:if="{{item.OrderType===app.orderType.PointProject}}" class="text-sm">
+              <text class="text-gray" wx:if="{{item.Point!==0}}">{{item.Point}}消费积分+</text>
+              <text class="text-gray"
+                wx:if="{{item.Commission!==0}}">{{item.Commission}}个{{item.CommissionName}}+</text>
+              <text class="text-gray"
+                wx:if="{{item.CouponCategoryID!==null}}">{{item.CouponAmount}}元{{item.CouponCategoryName}}</text>
+            </view>
+            <!-- 拼团 -->
+            <text wx:if="{{item.OrderType===app.orderType.PinTuan}}"
+              class="text-decoration text-sm text-gray">¥{{item.OriginPrice}}</text>
+          </view>
+          <view class="flex justify-end  align-center text-center" style="line-height:3">
+            <text class="text-red">{{filter.filtersOrderType(item.OrderType)}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="adorn-bottom margin-lr-sm"></view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "CommonEmpty": "/component/CommonEmpty/index",
+    "ShareType": "/component/ShareType/index"
+  }
+}

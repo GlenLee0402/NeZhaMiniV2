@@ -1,0 +1,13 @@
+<view class="text-center text-black0">请您阅读星选家权益</view>
+<view class="text-center margin-sm">
+  <van-image custom-class="width100 height100" fit="widthFix" lazy-load use-loading-slot src="{{SuperVipImageUrl}}">
+    <van-loading custom-class="margin-tb-lg" slot="loading" type="spinner" size="50px" vertical>加载中</van-loading>
+  </van-image>
+  <view class="margin-lr-lg">
+    <van-button color="#e03997" size="small" block bindtap="handleConfirm">已阅读并开通</van-button>
+  </view>
+  <view style="height: calc(20rpx + env(safe-area-inset-bottom) / 2);"></view>
+</view>
+<view class="goTop" wx:if='{{floorstatus}}' bindtap="goTop">
+  <text class="cuIcon-top lg text-white"></text>
+</view>

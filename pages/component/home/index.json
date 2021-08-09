@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Banner": "/component/Banner/index",
+    "Category": "/component/Category/index",
+    "Search": "/component/Search/index",
+    "HomeMenu": "/component/HomeMenu/index",
+    "HomeSeckill": "/component/HomeSeckill/index",
+    "HomePinTuan": "/component/HomePinTuan/index",
+    "TitleTag": "/component/TitleTag/index",
+    "CommonEmpty": "/component/CommonEmpty/index"
+  }
+}

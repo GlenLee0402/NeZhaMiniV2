@@ -1,0 +1,51 @@
+<view class="head flex align-center bg-white padding-sm">
+  <view class="flex-sm">
+    <image lazy-load class="cu-avatar xl round bg-white" src="{{Detail.HeadImage}}"></image>
+  </view>
+  <view class="flex-sub margin-left-lg">
+    <view><text class="text-black0">会员号:{{Detail.CustomerID}}</text></view>
+    <view class="cu-tag radius sm line-pink">{{Detail.MemberCategoryName}}</view>
+  </view>
+  <view bindtap="handleisShow">
+    <text class="text-gray text-sm">会员体系<text class="cuIcon-right text-gray"></text></text>
+  </view>
+</view>
+
+<view class="bg-white margin-tb-sm padding-sm  text-black">
+  <view class="text-black0">我的会员特权</view>
+  <view>
+    <van-grid direction="horizontal">
+      <block wx:for="{{Detail.MyEquityList}}" wx:key="index">
+        <van-grid-item text="{{item}}" />
+      </block>
+    </van-grid>
+  </view>
+</view>
+<view class="bg-white padding-sm text-black0" wx:if="{{Detail.NextMemberCategoryID !== null}}">
+  <view class="text-black">下一级 <text class="text-pink">{{Detail.NextMemberCategoryName }}</text>特权</view>
+  <view>
+    <van-grid direction="horizontal">
+      <block wx:for="{{Detail.NextEquityList}}" wx:key="index">
+        <van-grid-item text="{{item}}" />
+      </block>
+    </van-grid>
+  </view>
+</view>
+
+<view class="bg-white margin-top-sm  border-Bottom padding-sm text-black">
+  <view class="text-black">已累计消费<text class="text-pink">{{ Detail.Amount + '元'}}</text>距下一级升级需消费</view>
+</view>
+
+<view class="bg-white flex justify-center align-center circle">
+  <view class="circle-border">
+    <view class="flex justify-center align-center box bg-white">
+      <text class="text-black font-size12">{{Detail.NeedAmount + '元'}}</text>
+    </view>
+  </view>
+</view>
+<van-overlay wx:if="{{isShow}}" show="{{ isShow }}" bind:click="handleisHide"
+  custom-style="display: flex;justify-content: center;">
+  <view class="bg-white radius margin-sm">
+    <image class="height100" lazy-load src="{{DetailImg}}" mode="scaleToFill"></image>
+  </view>
+</van-overlay>

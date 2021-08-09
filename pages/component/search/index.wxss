@@ -1,0 +1,25 @@
+.history {
+  padding: 4%;
+  height: 400rpx;
+}
+
+.key-name>text {
+  background-color: #f7f7f7;
+  padding: 1% 3%;
+  margin: 2% 2% 0 0;
+}
+
+.img {
+  width: 300rpx;
+  height: 280rpx;
+}
+
+.position-relative>view:last-child {
+  position: absolute;
+  right: 0rpx;
+  bottom: 10rpx;
+}
+
+view.van-count-down {
+  color: #e54d42;
+}

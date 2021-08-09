@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "lucky-wheel": "/luckyPlugin/mini-luck-draw/lucky-wheel/index",
+    "lucky-grid": "/luckyPlugin/mini-luck-draw/lucky-grid/index",
+    "ShareType": "/component/ShareType/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-empty": "../../vantui/vant-weapp/empty/index"
+  }
+}

@@ -1,0 +1,12 @@
+<view class="search">
+  <view class="frame" bindtap="handleSearch">
+    <input class="frameInput" placeholder="请输入商品名称" disabled="{{true}}"></input>
+  </view>
+  <view class="margin-lr-sm">
+    <button class="contact-btn" open-type='contact'
+      style="background: none;border: none !important;margin: 0 !important;padding: 0 !important;height: 50rpx !important;"
+      send-message-title="消息卡片标题" send-message-img="{{IconUrl}}logo.png" bindcontact="handleContact">
+      <image style="width:50rpx;height:50rpx;" src="{{IconUrl}}newHomeKefu.png"></image>
+    </button>
+  </view>
+</view>

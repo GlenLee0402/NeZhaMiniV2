@@ -1,0 +1,5 @@
+<view class="flex justify-between align-center padding-sm bg-white">
+  <text class="titleTag">{{Title}}</text>
+  <text class="{{isTag === true ?'cu-tag bg-red':'text-bold text-sm'}} sm" bindtap="handleJump"
+    data-type="more">{{Text}}<text class="cuIcon-right text-white" wx:if="{{isTag}}"></text></text>
+</view>

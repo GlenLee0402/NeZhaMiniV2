@@ -1,0 +1,24 @@
+<view wx:if="{{ListItem.length > 0}}" class="padding-lr-sm">
+  <view class="" bindtap="handleJump" data-type="more">
+    <image mode="scaleToFill" class="width100" style="height:90rpx;"
+      src="https://miniapi.yeastar.nezhazn.net/Upload/Pictures/Project/401e932b-5285-44af-aad9-1bb926b4636f.png ">
+    </image>
+  </view>
+  <scroll-view scroll-x="true" class="scroll-view-box-x">
+    <view class="flex">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view class="home-seckill text-sm" bindtap="handleJump" data-id="{{item.SecKillID}}">
+          <image src="{{item.MinImage}}" class="img" mode="scaleToFill"></image>
+          <view class="name txte-overflow"><text>{{item.Name}}</text></view>
+          <view class="flex justify-between align-center padding-tb-xs">
+            <view>
+              <text class="text-pink text-sm">{{'¥'+item.TotalPrice}}</text>
+              <text class="text-gray text-sm text-decoration margin-left-xs">¥{{item.OriginPrice}}</text>
+            </view>
+            <text wx:if="{{item.BaseNum !== -1}}" class="text-gray text-xs">已售:{{item.SaleNum}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

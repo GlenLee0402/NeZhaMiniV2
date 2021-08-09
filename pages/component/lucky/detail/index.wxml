@@ -1,0 +1,133 @@
+<cu-custom isText="幸运抽奖" isCustom="{{true}}" bgColor="{{BgColor}}"></cu-custom>
+<view class="page" style="background-color:{{BgColor === null ? '#ffefd6':BgColor}};height:{{height}}">
+  <view class="width100">
+    <image lazy-load="" mode="scaleToFill" class="width100" src="{{Detail.BannerUrl}}"></image>
+  </view>
+
+  <view wx:if="{{Detail.Details !==null}}">
+    <!-- 消耗描述 -->
+    <view class="margin-lg flex justify-between rules align-center width100">
+      <view class="text-sm">
+        <text
+          wx:if="{{Detail.UsePoint ===-1 && Detail.UseCommission ===-1 && Detail.LimitNum === -1}}">请点击下方立即抽奖,转动转盘</text>
+        <text>
+          <text wx:if="{{Detail.UsePoint !== -1 || Detail.UseCommission !==-1}}">每次消耗</text>{{Detail.UsePoint !==-1
+          ?Detail.UsePoint+'积分,':''}}<text
+            wx:if="{{Detail.UsePoint !== -1 && Detail.UseCommission !==-1 }}">或</text>{{Detail.UseCommission !==-1 ?
+          Detail.UseCommission+Detail.CommissionName+',':''}}{{ Detail.LimitNum !== -1
+          ?'每天限制'+Detail.LimitNum+'次':''}}
+        </text>
+      </view>
+      <view>
+        <text style="color:{{OtherBgColor}};border: 1px solid {{OtherBgColor}};" class="radius text-sm"
+          bindtap="handleShowType" data-type="Rules">详细规则</text>
+      </view>
+    </view>
+    <!-- 抽奖轮盘 -->
+    <view class="width100  flex justify-center align-center flex-direction">
+      <lucky-grid hidden id="myLucky" width="350px" height="350px" blocks="{{blocks}}" prizes="{{prizes}}"
+        buttons="{{buttons}}" defaultStyle="{{defaultStyle}}" activeStyle="{{activeStyle}}" bindstart="handleStart"
+        bindend="handleEnd" isHidden="{{isHidden}}">
+      </lucky-grid>
+    </view>
+    <!-- 剩余次数 -->
+    <view
+      class="lucky-num flex text-sm margin-lr {{ Detail.UsePoint !==-1 ? 'justify-around':''}} {{ Detail.UseCommission !==-1  ? 'justify-around':''}} line-height3 margin-lr-sm">
+      <view>
+        <text>剩余次数：</text>
+        <text>{{Detail.RestNum}}</text>
+      </view>
+      <view wx:if="{{Detail.UsePoint !==-1}}">
+        <text>我的积分：</text>
+        <text>{{Detail.RestPoint}}</text>
+      </view>
+      <view wx:if="{{Detail.UseCommission !==-1}}">
+        <text>我的{{Detail.CommissionName}}：</text>
+        <text>{{Detail.RestCommission}}</text>
+      </view>
+    </view>
+
+    <!-- 我的中奖 -->
+    <view class="margin-lr-lg">
+      <view class="text-center text-sm" wx:if="{{Detail.TodayRestNum !==-1}}">
+        <text>今日可抽奖次数剩余<text>{{Detail.TodayRestNum}}</text>次</text>
+      </view>
+      <view class="padding-lr flex flex-direction">
+        <van-button color="{{OtherBgColor}}" size="small" block round bindtap="handleShowType" data-type="MyPrize">
+          我的中奖记录
+        </van-button>
+        <van-button color="{{OtherBgColor}}" size="small" block plain round custom-class="margin-top-sm"
+          bindtap="handleShareShow">
+          邀请好友</van-button>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="text-center">
+    <view>{{ErrMessage}}</view>
+  </view>
+</view>
+<!-- 弹窗 -->
+<van-overlay show="{{ isShow }}">
+  <view class="height100 flex justify-center flex-direction align-center">
+    <!-- 是否中奖 -->
+    <view wx:if="{{isShowType==='Prize'}}" class="overlay-container">
+      <view class="height100 position-relative">
+        <!-- 中奖 -->
+        <image mode="scaleToFill" class="height100 width100"
+          src="{{IconUrl}}newimages/{{LuckyDetail.IsLucky === true ?'isPrize.png':'noPrize.png'}}">
+        </image>
+        <view class="container-isPrize">
+          <text class="{{LuckyDetail.IsLucky === true ?'prizes-yes':'prizes-no'}}">{{LuckyDetail.IsLucky === true ?
+            '恭喜您,获得'+LuckyDetail.LuckyProduct:'很遗憾,您没有中奖'}}</text>
+          <view><text class="text-df {{LuckyDetail.IsLucky === true ?'prizes-yes':'prizes-no'}}">{{LuckyDetail.IsLucky
+              === true?'已放入您的账户中':'不要灰心,再接再厉'}}</text></view>
+        </view>
+        <view class="container-btn padding flex flex-direction">
+          <button class="cu-btn round lg" bindtap="handleStart"><text class="text-df text-white">再抽一次</text></button>
+          <button class="cu-btn round lg margin-tb-sm" bindtap="handleCloseOrJump">
+            <text style="color:#df5b58;" class="text-df">{{LuckyDetail.IsLucky===true?'立即查看':'关闭'}}</text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <!-- 详细规则 -->
+    <view wx:if="{{isShowType === 'Rules' }}" class="overlay-container container-bg">
+      <view class="overlay-Rules">
+        <view><text>活动规则</text></view>
+        <view class="margin-lr-sm">
+          <scroll-view scroll-y="true" style="height: 500rpx;">
+            <view><text style="color:{{OtherBgColor}};">{{Detail.Remark}}</text></view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!-- 我的中奖信息 -->
+    <view wx:if="{{isShowType === 'MyPrize'}}" class="overlay-container container-bg">
+      <view class="overlay-Rules">
+        <view><text>我的中奖信息</text></view>
+        <view class="margin-lr-sm" wx:if="{{MinePrizeList.length > 0}}">
+          <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltolower="handleLower">
+            <view>
+              <block wx:for="{{MinePrizeList}}" wx:key="index">
+                <view style="color:{{OtherBgColor}};border-bottom: 1px solid {{OtherBgColor}};" class="myPrize">
+                  {{item.CreateTime}}<text class="margin-lr-sm"
+                    style="color:{{OtherBgColor}};">获得</text>{{item.LuckyProduct}}
+                </view>
+              </block>
+            </view>
+          </scroll-view>
+        </view>
+        <view wx:else class="flex justify-center align-center"> <text class="text-center">暂无记录</text></view>
+      </view>
+    </view>
+    <!-- 关闭 -->
+    <view bindtap="handleHide">
+      <text class="cuIcon-roundclose text-white"></text>
+    </view>
+  </view>
+</van-overlay>
+
+<cover-view wx:if="{{isShareShow}}" class="pause"></cover-view>
+<ShareType isShow="{{isShareShow}}" QrParams="{{QrParams}}" bindtap="handleHide"></ShareType>
+
+<van-toast id="van-toast" />

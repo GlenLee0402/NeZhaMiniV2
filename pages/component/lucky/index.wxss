@@ -1,0 +1,16 @@
+page {
+  background-color: white;
+}
+
+.lucky {
+  height: 300rpx;
+  position: relative;
+}
+
+.luckyImg {
+  z-index: -1;
+}
+
+.notImg {
+  background: rgba(0, 0, 0, 0.3);
+}

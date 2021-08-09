@@ -1,0 +1,27 @@
+<cu-custom isText="星选家特区" isCustom="{{true}}"></cu-custom>
+<TitleTag Title="星选家特区" Text="免费领取"></TitleTag>
+<!-- <view class="text-sm text-gray padding-lr-sm bg-white text-center">本人可免费领取一次专享项目·您也可以赠送给好友一起享美丽</view> -->
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-150}}px;" bindscrolltolower="handleLower"
+  class="bg-white">
+  <view class="padding-lr-sm">
+    <view wx:if="{{ListItem.length > 0}}" class="padding-tb-sm">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view bindtap="handleJump" data-id="{{item.SuperVipProjectID}}" class="flex flex-wrap position-relative">
+          <view class="basis-sm">
+            <image class="img" src="{{item.MinImage}}"></image>
+          </view>
+          <view class="basis-sm">
+            <view class="text-bold text-df txte-overflow line-height2"><text>{{item.Name}}</text></view>
+            <view><text class="text-sm text-gray">{{item.Remark}}</text></view>
+          </view>
+          <view>
+            <van-button color="#e54d42" size="mini">免费领取</van-button>
+          </view>
+        </view>
+        <view class="adorn-bottom"></view>
+      </block>
+    </view>
+    <CommonEmpty wx:else></CommonEmpty>
+    <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+  </view>
+</scroll-view>

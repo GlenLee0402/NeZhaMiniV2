@@ -1,0 +1,96 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "1.普通商品详情",
+          "pathName": "/pages/component/home/detail/index",
+          "query": "PromoteID=10003&Source=8&ID=15134969055872000",
+          "scene": null
+        },
+        {
+          "name": "2.秒杀详情",
+          "pathName": "/pages/component/seckill/detail/index",
+          "query": "PromoteID=10002&Source=9&ID=14647289227641856",
+          "scene": null
+        },
+        {
+          "name": "3.拼团详情",
+          "pathName": "/pages/component/assemble/detail/index",
+          "query": "PromoteID=10002&Source=10&ID=15187153696392192",
+          "scene": null
+        },
+        {
+          "name": "4.拼团中",
+          "pathName": "/pages/component/assemble/assembleIng/index",
+          "query": "PromoteID=10002&Source=10&ID=15361652684211200",
+          "scene": null
+        },
+        {
+          "name": "5.砍价详情",
+          "pathName": "/pages/component/haggle/detail/index",
+          "query": "PromoteID=10002&Source=12&ID=14997994646914048&CustomerHaggleID=15356876117672960",
+          "scene": null
+        },
+        {
+          "name": "6.积分兑换",
+          "pathName": "/pages/component/point/detail/index",
+          "query": "PromoteID=10002&Source=11&ID=14661507778954240",
+          "scene": null
+        },
+        {
+          "name": "7.轮盘抽奖",
+          "pathName": "/pages/component/lucky/index",
+          "query": "PromoteID=10003&Source=15",
+          "scene": null
+        },
+        {
+          "name": "8.手拉手",
+          "pathName": "/pages/component/friend/detail/index",
+          "query": "PromoteID=10002&Source=16&ID=15262324519863296&FriendCustomerID=10002",
+          "scene": null
+        },
+        {
+          "name": "9.星选家",
+          "pathName": "/pages/component/mine/myShare/selectList/detail/index",
+          "query": "PromoteID=10002&Source=13&ID=15351369984427008",
+          "scene": null
+        },
+        {
+          "name": "10.首页未登陆",
+          "pathName": "pages/index/index",
+          "query": "PromoteID=null&PageCur=home",
+          "scene": null
+        },
+        {
+          "name": "11.首页已登陆",
+          "pathName": "pages/index/index",
+          "query": "PromoteID=10002&Source=6&PageCur=home",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "PromoteID=10002&Source=6&PageCur=home",
+          "scene": null
+        },
+        {
+          "name": "注册星选家",
+          "pathName": "pages/component/mine/myShare/attestation/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

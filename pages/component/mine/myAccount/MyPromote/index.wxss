@@ -1,0 +1,21 @@
+.promote>view:first-child {
+  width: 60rpx;
+  height: 70rpx;
+}
+
+.promote>view:last-child {
+  position: absolute;
+  right: 30rpx;
+  top: 36rpx;
+}
+
+.level {
+  color: #ec9639;
+  position: absolute;
+  left: 42rpx;
+  top: 28rpx;
+}
+
+.promote-list {
+  line-height: 35rpx;
+}

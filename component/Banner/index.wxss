@@ -1,0 +1,24 @@
+.new-screen-swiper {
+  min-height: 400rpx;
+  /* margin: 0 -10px; */
+  margin: -5px -10px -5px -10px;
+}
+
+.new-screen-swiper .image,
+.new-swiper-item .image {
+  width: 100%;
+  display: block;
+  height: 100%;
+  margin: 0;
+  pointer-events: none;
+}
+
+.new-screen-swiper .swiper-item .swiper-item-Img {
+  width: 100%;
+  display: block;
+  height: 100%;
+  border-radius: 20rpx;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in 0s;
+  overflow: hidden;
+}

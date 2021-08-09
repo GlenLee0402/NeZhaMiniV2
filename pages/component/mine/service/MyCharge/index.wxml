@@ -1,0 +1,28 @@
+<cu-custom isText="我的项目" isCustom="{{true}}"></cu-custom>
+<Tabs Tabs="{{Tabs}}" bind:Active="handleActive"></Tabs>
+<scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower="handleLower">
+  <view wx:if="{{ListItem.length > 0}}">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="accountList">
+        <view>
+          <view><text class="{{Params.Type  ===Tabs[1].Type  ? 'text-gray':'text-black0'}}">{{item.ChargeName}}</text>
+          </view>
+          <view class="text-sm">
+            <text wx:if="{{Params.Type ===Tabs[0].Type}}" class="text-gray">购买时间:{{item.CreateTime}}</text>
+            <text wx:if="{{Params.Type  ===Tabs[1].Type}}" class="text-gray">治疗时间:{{item.CreateTime}}</text>
+          </view>
+        </view>
+        <view>
+          <view><text class="{{Params.Type  ===Tabs[1].Type  ? 'text-gray':'text-black0'}}">{{item.HospitalName}}</text>
+          </view>
+          <view class="text-sm">
+            <text wx:if="{{Params.Type  ===Tabs[0].Type}}" class="text-gray">购买数量:{{item.Num}}</text>
+            <text wx:if="{{Params.Type  ===Tabs[1].Type}}" class="text-gray">治疗数量:{{item.Num}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>

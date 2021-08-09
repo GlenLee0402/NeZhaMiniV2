@@ -1,0 +1,17 @@
+<cu-custom isText="我的卡包" isCustom="{{true}}"></cu-custom>
+<import src="../../../../../component/SkeletonList/index.wxml" />
+<template is="skeleton" wx:if="{{Loading}}"></template>
+
+<view class="margin-sm" wx:if="{{ListItem.length > 0}}">
+  <block wx:for="{{ListItem}}" wx:key="index">
+    <view bindtap="handleJump" data-clubid="{{item.ID}}" data-clubtype="{{item.ClubType}}"
+      class="card-list radius position-relative margin-tb-sm flex align-center padding-sm"
+      style="background-image:url({{item.HeaderImage}})">
+      <view class="text-white round">
+        <text class="text-white">{{Types[item.ClubType]}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<CommonEmpty wx:if="{{ListItem.length === 0 && Loading === false}}"></CommonEmpty>
+<van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">没有更多啦</van-divider>

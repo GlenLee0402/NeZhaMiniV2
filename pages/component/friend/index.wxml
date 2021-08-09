@@ -1,0 +1,22 @@
+<cu-custom isText="手拉手" isCustom="{{true}}"></cu-custom>
+<view wx:if="{{ListItem.length > 0}}">
+  <scroll-view scroll-y="true" style="height:{{app.globalData.StatusHeight-100}}px;" bindscrolltolower="handleLower">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="flex bg-white margin-sm margin-bottom-sm radius" bindtap="hadnleJump" data-id="{{item.ID}}">
+        <view>
+          <image mode="scaleToFill" src="{{item.ImageMiniUrl}}"></image>
+        </view>
+        <view class="margin-left-lg">
+          <view class="line-height3"><text>{{item.Name}}</text></view>
+          <view wx:if="{{item.EndText === null}}">
+            <text class="text-pink">{{item.StartTime}}<text
+                class="margin-lr-sm text-pink">至</text>{{item.EndTime}}</text>
+          </view>
+          <view wx:else><text class="text-red">{{item.EndText}}</text></view>
+        </view>
+      </view>
+    </block>
+    <van-divider dashed contentPosition="center">已经到底啦</van-divider>
+  </scroll-view>
+</view>
+<CommonEmpty wx:else></CommonEmpty>

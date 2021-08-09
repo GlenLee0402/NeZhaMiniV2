@@ -1,0 +1,2 @@
+@import '../MyConsult/index.wxss';
+@import '../../index.wxss';

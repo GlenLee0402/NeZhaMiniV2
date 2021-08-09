@@ -1,0 +1,114 @@
+.page {
+  display: block;
+  min-height: 100%;
+  width: 100%;
+  /* position: absolute;
+  left: 0;
+  top: 0; */
+  z-index: 1;
+}
+
+.width100>image {
+  height: 285rpx;
+}
+
+.rules>view:first-child {
+  width: 72%;
+}
+
+
+.rules>view:last-child {
+  width: 28%;
+}
+
+.rules>view:last-child>text {
+  /* color: #e9cf9b;
+  border: 1px solid #e9cf9b; */
+  padding: 5rpx 10rpx;
+  border-radius: 20rpx;
+  margin-left: 20rpx;
+
+}
+
+.overlay-container {
+  position: relative;
+  width: 85%;
+  height: 40%;
+  border-radius: 20rpx;
+  margin: 30% 0 30rpx 0;
+}
+
+.container-bg {
+  background-color: #fdfdfd;
+}
+
+/* 弹窗活动规则 */
+.overlay-Rules>view:first-child {
+  text-align: center;
+  font-size: 40rpx;
+  margin: 30rpx;
+  /* border-bottom: 1px dashed #d98459; */
+}
+
+.height100>view:last-child {
+  font-size: 58rpx;
+  color: #ffffff;
+}
+
+.myPrize {
+  /* border-bottom: 1px solid #d98459; */
+  padding-top: 15rpx;
+}
+
+.container-isPrize {
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-isPrize>text:first-child {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.container-isPrize>text:last-child {
+  font-size: 38rpx;
+}
+
+.prizes-yes {
+  color: #df5c58;
+}
+
+.prizes-no {
+  color: #7b7a7a;
+}
+
+.container-btn {
+  position: absolute;
+  text-align: center;
+  bottom: 5%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 60rpx;
+}
+
+.container-btn>button:first-child {
+  background-color: #df5b58;
+}
+
+.container-btn>button:last-child {
+  background-color: #ffffff;
+  border: 1px solid #df5b58;
+}
+
+.pause {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-color: rgba(0, 0, 0, 0.01);
+  /* background-color: red; */
+}

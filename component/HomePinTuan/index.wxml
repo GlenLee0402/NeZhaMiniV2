@@ -1,0 +1,27 @@
+<view wx:if="{{ListItem.length > 0}}" class="padding-tb-sm">
+  <TitleTag Title="多人拼团" isTag="true" Text="更多" Url="/pages/component/assemble/index"></TitleTag>
+  <view class="margin-lr-sm">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view bindtap="handleJump" data-id="{{item.PinTuanID}}" class="flex flex-wrap align-center">
+        <view class="basis-df">
+          <image class="img" src="{{item.MinImage}}"></image>
+        </view>
+        <view class="basis-df line-height4">
+          <view class="text-bold text-df txte-overflow"><text>{{item.Name}}</text></view>
+          <view class="flex justify-between">
+            <view class="cu-capsule">
+              <view class="cu-tag bg-red">{{item.PeopleNum+'人团'}}</view>
+              <view class="cu-tag line-red">{{'¥'+item.TotalPrice}}</view>
+            </view>
+            <view class="cu-tag bg-red">去拼团</view>
+          </view>
+          <view class="flex justify-between text-sm">
+            <text class="text-decoration text-gray">{{'¥'+item.OriginPrice}}</text>
+            <text wx:if="{{item.BaseNum !== -1}}" class="text-red">{{'已拼'+item.SaleNum}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="adorn-bottom"></view>
+    </block>
+  </view>
+</view>

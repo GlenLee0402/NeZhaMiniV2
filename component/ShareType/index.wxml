@@ -1,0 +1,28 @@
+<van-overlay show="{{ isShow }}" class="position-relative">
+  <view class="height100 flex justify-center position-relative">
+    <view class="detail-share-block bg-white radius flex justify-center flex-direction">
+      <view class="flex justify-around text-center">
+        <button plain open-type="share"
+          style="border: none !important;margin: 0 !important;padding: 0 !important;line-height: 1 !important;">
+          <view class="flex flex-direction" bindtap="handleShare" data-type="wechat">
+            <view>
+              <image lazy-load class="share-img" src="{{IconUrl}}imgs/img-wecha.jpeg"></image>
+            </view>
+            <view>
+              <text class="text-gray text-sm">微信分享</text>
+            </view>
+          </view>
+        </button>
+        <view class="flex flex-direction" bindtap="handleShare" data-type="img">
+          <view>
+            <image lazy-load class="share-img" src="{{IconUrl}}imgs/share-img.jpeg"></image>
+          </view>
+          <view><text class="text-gray text-sm">生成图片</text></view>
+        </view>
+      </view>
+    </view>
+    <view class="clear" bindtap="handleClose">
+      <text style="font-size:72rpx;" class="cuIcon-roundclose  text-white"></text>
+    </view>
+  </view>
+</van-overlay>

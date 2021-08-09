@@ -1,0 +1,13 @@
+.myhaggle {
+  border-bottom: 1px solid #e7ebed
+}
+
+.head-img {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.myhaggle-right {
+  position: absolute;
+  right: 20rpx;
+}

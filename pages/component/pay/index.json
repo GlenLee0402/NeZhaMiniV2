@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-checkbox": "/vantui/vant-weapp/checkbox/index",
+    "van-checkbox-group": "/vantui/vant-weapp/checkbox-group/index",
+    "van-collapse": "/vantui/vant-weapp/collapse/index",
+    "van-collapse-item": "/vantui/vant-weapp/collapse-item/index",
+    "van-notify": "/vantui/vant-weapp/notify/index"
+  },
+  "navigationBarTitleText": "确认订单"
+}

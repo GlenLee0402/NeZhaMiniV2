@@ -1,0 +1,8 @@
+<swiper wx:if="{{BannerList.length > 0}}" class="new-screen-swiper square-dot" indicator-dots="true" circular="true"
+  autoplay="true" interval="5000" duration="500">
+  <swiper-item class="swiper-item" wx:for="{{BannerList}}" wx:key="index">
+    <view class="swiper-item-Img" bindtap="handleJump" data-url="{{item.Url}}">
+      <image class="image" src="{{item.ImageUrl}}" mode="scaleToFill"></image>
+    </view>
+  </swiper-item>
+</swiper>

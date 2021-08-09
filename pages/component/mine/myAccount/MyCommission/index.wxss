@@ -1,0 +1,10 @@
+.send-popup>view:first-child {
+  margin: 10% 0 5% 0;
+}
+
+.send-popup>view:last-child {
+  margin: 0 10% 0 10%;
+}
+
+
+@import '../../index.wxss'

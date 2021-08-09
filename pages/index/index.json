@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "Category": "/component/Category/index",
+    "Search": "/component/Search/index",
+    "HomeCustom": "/component/HomeCustom/index",
+    "Share": "/pages/component/share/index",
+    "Mine": "/pages/component/mine/index",
+    "Home": "/pages/component/home/index"
+  },
+  "navigationStyle": "custom"
+}

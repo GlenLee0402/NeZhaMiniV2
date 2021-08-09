@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ShareType": "/component/ShareType/index"
+  },
+  "navigationStyle": "custom"
+}

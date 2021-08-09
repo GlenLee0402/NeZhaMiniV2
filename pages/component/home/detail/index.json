@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ProjectDetail": "/component/ProjectDetail"
+  },
+  "navigationStyle": "custom"
+}

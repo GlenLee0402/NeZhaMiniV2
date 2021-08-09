@@ -1,0 +1,12 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view style="width:90%;background-color: #EEEEEE; margin: 0 auto;">
+      <scroll-view scroll-y="true" style="height:702px;">
+        <view class="height100 flex justify-between align-center">
+          <image style="width: 150px;height: 150px; margin: 0 auto;" src="../../../../../../assets/loading.gif"
+            class="sk-image"></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>

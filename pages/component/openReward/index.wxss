@@ -1,0 +1,68 @@
+.open-top {
+  height: 170rpx;
+  padding-top: 88rpx;
+  background: linear-gradient(to right, #f95048, #f95048);
+}
+
+.open-top>view:last-child>text {
+  position: absolute;
+  right: 42%;
+  top: 62%;
+}
+
+.open-container {
+  height: 250rpx;
+  background: linear-gradient(to right, #fa6049, #f95048);
+  border-bottom-right-radius: 900rpx 80rpx;
+  border-bottom-left-radius: 900rpx 80rpx;
+}
+
+.content {
+  background-color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  box-shadow: 0px 15px 10rpx -15px #fa6049;
+}
+
+.content>view:first-child>image {
+  height: 120rpx;
+  width: 100%;
+}
+
+.content-list {
+  width: 85%;
+  margin: 10rpx auto;
+  height: 135rpx;
+  background-color: #fde8ea;
+  position: relative;
+}
+
+.content-list>view:first-child {
+  background-color: #fa6049;
+  width: 25%;
+  height: 135rpx;
+  line-height: 135rpx;
+  text-align: center;
+}
+
+.content-list>view:nth-child(2) {
+  width: 61%;
+}
+
+.text-hidden {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.isCheck {
+  position: absolute;
+  right: 5rpx;
+  color: #fa6049;
+  width: 10%;
+}

@@ -1,0 +1,16 @@
+.iconUrl {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.member {
+  height: 210rpx;
+}
+
+.member:first-child {
+  margin-right: 10rpx;
+}
+
+/* .member:last-child {
+  margin-left: 10rpx;
+} */

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "Tabs": "/component/Tabs/index",
+    "CommonEmpty": "/component/CommonEmpty/index"
+  },
+  "navigationStyle": "custom"
+}

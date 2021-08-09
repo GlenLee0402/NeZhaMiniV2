@@ -1,0 +1,44 @@
+.detail {
+  width: 100%;
+}
+
+.detail>view:nth-child(2) {
+  width: 55%;
+  line-height: 2;
+  margin-left: 30rpx;
+}
+
+.detail>view:nth-child(2)>view:nth-child(2) {
+  line-height: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.detail>view:first-child {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.van-field__label {
+  color: #000000 !important;
+}
+
+.foots {
+  width: 100%;
+}
+
+.foots>view:last-child {
+  width: 40%;
+}
+
+.input-class {
+  text-align: center;
+}
+
+text.cuIcon-warn::before {
+  font-size: 100rpx;
+}

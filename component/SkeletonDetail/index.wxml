@@ -1,0 +1,166 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view is="colorui/components/cu-custom">
+      <view class="cu-custom custom--cu-custom" style="height:84px;">
+        <view class="cu-bar custom--cu-bar fixed custom--fixed"
+          style="height:84px;padding-top:44px;background-color:#ffffff">
+          <view
+            class="action custom--action border-custom custom--border-custom text-black custom--text-black sk-pseudo sk-pseudo-circle"
+            style="width: 87px; height: 32px; margin-left: calc(7px); border: none;">
+            <text class="cuIcon-back custom--cuIcon-back sk-pseudo sk-pseudo-circle"></text>
+            <text class="cuIcon-homefill custom--cuIcon-homefill sk-pseudo sk-pseudo-circle"></text>
+          </view>
+          <view class="content custom--content text-black custom--text-black font-size14 custom--font-size14"
+            style="top:44px">
+            <text class="sk-transparent sk-text-23-3333-334 sk-text" style="background-position-x: 50%;">商品详情</text>
+          </view>
+        </view>
+      </view>
+      <view is="vantui/vant-weapp/toast/index">
+        <view is="vantui/vant-weapp/transition/index"></view>
+      </view>
+    </view>
+    <view is="component/ProjectDetail/index">
+      <view is="vantui/vant-weapp/skeleton/index">
+        <view class="van-skeleton__content skeleton-index--van-skeleton__content">
+          <view class="position-relative ProjectDetail-index--position-relative">
+            <view class="header-img flex align-center justify-center">
+            
+            </view>
+            <view class="good ProjectDetail-index--good">
+              <text
+                class="text-pink ProjectDetail-index--text-pink sk-transparent sk-text-14-2857-612 sk-text">好评率:98%</text>
+            </view>
+          </view>
+          <view class="adorn-bottom ProjectDetail-index--adorn-bottom"></view>
+          <view class="bg-white ProjectDetail-index--bg-white">
+            <view
+              class="flex ProjectDetail-index--flex justify-between ProjectDetail-index--justify-between align-center ProjectDetail-index--align-center padding-lr-sm ProjectDetail-index--padding-lr-sm">
+              <view>
+                <text
+                  class="text-pink ProjectDetail-index--text-pink text-xl ProjectDetail-index--text-xl sk-transparent"><text
+                    class="text-pink ProjectDetail-index--text-pink text-df ProjectDetail-index--text-df text-bold ProjectDetail-index--text-bold sk-transparent sk-opacity">¥</text>100</text>
+                <view
+                  class="text-decoration ProjectDetail-index--text-decoration text-gray ProjectDetail-index--text-gray"
+                  style="text-decoration-color: transparent;">
+                  <text
+                    class="text-sm ProjectDetail-index--text-sm text-gray ProjectDetail-index--text-gray sk-transparent sk-text-14-2857-785 sk-text">¥:3000</text>
+                </view>
+              </view>
+              <view>
+                <text
+                  class="text-sm ProjectDetail-index--text-sm text-gray ProjectDetail-index--text-gray sk-transparent sk-text-14-2857-791 sk-text">无限制</text>
+              </view>
+            </view>
+            <view
+              class="flex ProjectDetail-index--flex justify-between ProjectDetail-index--justify-between align-center ProjectDetail-index--align-center share ProjectDetail-index--share padding-lr-sm ProjectDetail-index--padding-lr-sm">
+              <view class="text-lg ProjectDetail-index--text-lg">
+                <text class="sk-transparent sk-text-14-2857-918 sk-text">红富士苹果一箱[大促销]</text>
+              </view>
+              <view class="text-center ProjectDetail-index--text-center">
+                <view>
+                  <text
+                    class="cuIcon-share ProjectDetail-index--cuIcon-share text-sm ProjectDetail-index--text-sm text-pink ProjectDetail-index--text-pink sk-pseudo sk-pseudo-circle"></text>
+                </view>
+                <view>
+                  <text
+                    class="text-sm ProjectDetail-index--text-sm text-pink ProjectDetail-index--text-pink sk-transparent sk-text-14-2857-474 sk-text"
+                    style="background-position-x: 50%;">分享</text>
+                </view>
+              </view>
+            </view>
+            <view class="padding-lr-sm ProjectDetail-index--padding-lr-sm">
+              <text
+                class="text-sm ProjectDetail-index--text-sm text-gray ProjectDetail-index--text-gray sk-transparent sk-text-14-2857-964 sk-text">新品套餐大促销,光秒魔颜2选1套餐[大促销]</text>
+            </view>
+            <view class="adorn-bottom ProjectDetail-index--adorn-bottom"></view>
+            <view
+              class="flex ProjectDetail-index--flex justify-between ProjectDetail-index--justify-between align-center ProjectDetail-index--align-center padding-sm ProjectDetail-index--padding-sm">
+              <view>
+                <text
+                  class="text-xs ProjectDetail-index--text-xs cu-tag ProjectDetail-index--cu-tag line-pink ProjectDetail-index--line-pink round ProjectDetail-index--round sk-transparent sk-text-14-2857-890 sk-text sk-pseudo sk-pseudo-circle">限购99</text>
+              </view>
+              <view>
+                <view is="vantui/vant-weapp/stepper/index">
+                  <view class="van-stepper stepper-index--van-stepper ">
+                    <view
+                      class="van-stepper__minus stepper-index--van-stepper__minus van-stepper__minus--disabled stepper-index--van-stepper__minus--disabled sk-pseudo sk-pseudo-circle"
+                      data-type="minus" hover-class="van-stepper__minus--hover" hover-stay-time="70"
+                      style="width: 100%; height: 100%"></view>
+                    <view
+                      class="ProjectDetail-index--stepper-input van-stepper__input stepper-index--van-stepper__input van-stepper__input--disabled stepper-index--van-stepper__input--disabled sk-image"
+                      style="width:100% ; height: 100%" type="number" value="1" disabled="true"></view>
+                    <view class="van-stepper__plus stepper-index--van-stepper__plus sk-pseudo sk-pseudo-circle"
+                      data-type="plus" hover-class="van-stepper__plus--hover" hover-stay-time="70"
+                      style="width:100% ; height:100% "></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="adorn-bottom ProjectDetail-index--adorn-bottom"></view>
+            <view
+              class="flex ProjectDetail-index--flex justify-between ProjectDetail-index--justify-between align-center ProjectDetail-index--align-center padding-sm ProjectDetail-index--padding-sm">
+              <view>
+                <text
+                  class="text-sm ProjectDetail-index--text-sm text-black ProjectDetail-index--text-black sk-transparent sk-text-14-2857-121 sk-text">无需运费</text>
+              </view>
+              <view>
+                <text
+                  class="text-sm ProjectDetail-index--text-sm text-gray ProjectDetail-index--text-gray saleNum ProjectDetail-index--saleNum sk-transparent sk-text-14-2857-813 sk-text sk-pseudo sk-pseudo-circle">已售100</text>
+                <text
+                  class="text-sm ProjectDetail-index--text-sm text-gray ProjectDetail-index--text-gray sk-transparent sk-text-14-2857-548 sk-text">剩余999</text>
+              </view>
+            </view>
+            <view class="adorn-bottom ProjectDetail-index--adorn-bottom"></view>
+            <view
+              class="flex ProjectDetail-index--flex align-center ProjectDetail-index--align-center padding-sm ProjectDetail-index--padding-sm">
+              <view>
+                <text
+                  class="text-sm ProjectDetail-index--text-sm text-black ProjectDetail-index--text-black sk-transparent">购买后立即生效<text
+                    class="sk-transparent sk-text-14-2857-745 sk-text">·线上暂不支持退款</text>·非包邮项目请院内使用</text>
+              </view>
+            </view>
+            <view class="adorn-bottom ProjectDetail-index--adorn-bottom"></view>
+            <view
+              class="detailImage ProjectDetail-index--detailImage padding-sm ProjectDetail-index--padding-sm text-center ProjectDetail-index--text-center">
+              <!-- <view class="text-lg ProjectDetail-index--text-lg">
+                <text class="img-detail ProjectDetail-index--img-detail sk-transparent sk-text-14-2857-422 sk-text"
+                  style="border: none; background-position-x: 50%;">图文详情</text>
+              </view>
+              <view class="detai-img">
+            
+              </view> -->
+            </view>
+          </view>
+          <view
+            class="detail-footer ProjectDetail-index--detail-footer padding-lr-sm ProjectDetail-index--padding-lr-sm">
+            <view class="padding-lr ProjectDetail-index--padding-lr">
+              <image class="imageICon ProjectDetail-index--imageICon sk-image"></image>
+              <view>
+                <text class="text-sm ProjectDetail-index--text-sm sk-transparent sk-text-14-2857-642 sk-text"
+                  style="background-position-x: 50%;">首页</text>
+              </view>
+            </view>
+            <view>
+              <button
+                class="contact-info ProjectDetail-index--contact-info bg-white ProjectDetail-index--bg-white sk-button sk-pseudo sk-pseudo-circle"
+                open-type="contact"
+                style="border: none !important;margin: 0 !important;padding: 0 !important;line-height: 1 !important;">
+                <image class="imageICon ProjectDetail-index--imageICon sk-image"></image>
+              </button>
+              <view>
+                <text class="text-sm ProjectDetail-index--text-sm sk-transparent sk-text-14-2857-818 sk-text"
+                  style="background-position-x: 50%;">客服</text>
+              </view>
+            </view>
+            <view style="width: 70%;">
+              <button
+                class="cu-btn ProjectDetail-index--cu-btn round ProjectDetail-index--round bg-pink ProjectDetail-index--bg-pink shadow ProjectDetail-index--shadow sk-transparent sk-button sk-pseudo sk-pseudo-circle"
+                style="width: 90%;">立即购买</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,30 @@
+<cu-custom isText="{{active === 'Home'?'砍价':'我的砍价'}}" isCustom="{{true}}"></cu-custom>
+<TitleTag wx:if="{{active === 'Home'}}" Title="砍价" Text="多砍多享"></TitleTag>
+<scroll-view wx:if="{{active === 'Home'}}" scroll-y="true" style="height:{{app.globalData.StatusHeight-200}}px;"
+  bindscrolltolower="handleLower" class="bg-white">
+  <view class="padding-lr-sm">
+    <view wx:if="{{ListItem.length > 0}}" class="thumb">
+      <block wx:for="{{ListItem}}" wx:key="index">
+        <view bindtap="handleJump" data-id="{{item.HaggleID}}" data-CustomerHaggleID="{{item.CustomerHaggleID}}"
+          class="list-container">
+          <image lazy-load class="thumb-img" src="{{item.MinImage}}"></image>
+          <view class="txte-overflow"><text>{{item.Name}}</text></view>
+          <view class="flex justify-between align-center">
+            <view>
+              <text class="text-pink text-df">{{'¥'+item.TotalPrice}}</text>
+              <text class="text-gray text-sm text-decoration margin-left-xs">¥{{item.OriginPrice}}</text>
+            </view>
+            <text class="text-gray" wx:if="{{item.BaseNum !== -1}}">已砍:{{item.SaleNum}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <CommonEmpty wx:else></CommonEmpty>
+    <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+  </view>
+</scroll-view>
+<MyHaggle wx:if="{{active === 'MyHaggle'}}"></MyHaggle>
+<van-tabbar active="{{ active }}" bind:change="handleTabbarChange" active-color="#e03997" inactive-color="#999faa">
+  <van-tabbar-item name="Home" icon="home-o">商品列表</van-tabbar-item>
+  <van-tabbar-item name="MyHaggle" icon="star-o">我的砍价</van-tabbar-item>
+</van-tabbar>

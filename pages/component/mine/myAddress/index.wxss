@@ -1,0 +1,25 @@
+.footer-btn {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 40rpx;
+  width: 90%;
+  text-align: center;
+}
+
+.edit::after {
+  content: '|';
+  margin: 0 10rpx;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+textarea {
+  height: 200rpx;
+  width: 92%;
+  margin: 20rpx 30rpx;
+  border: 1rpx solid #e7ebed;
+  position: relative;
+  font-size: 28rpx;
+  padding: 10rpx;
+}

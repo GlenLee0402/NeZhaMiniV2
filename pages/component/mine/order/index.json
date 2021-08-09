@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "CommonEmpty": "/component/CommonEmpty/index"
+  },
+  "navigationBarTitleText": "我的订单"
+}

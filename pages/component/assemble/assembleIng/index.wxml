@@ -1,0 +1,43 @@
+<cu-custom isCustom="{{true}}" isText="拼团中"></cu-custom>
+<view class="width100">
+  <view class="bg-white flex align-center  padding-sm head">
+    <view>
+      <image class="radius height100" mode="widthFix" src="{{Detail.MinImage}}"></image>
+    </view>
+    <view class="margin-left-lg">
+      <view><text class="txte-overflow2 text-black0">{{Detail.Name}}</text></view>
+      <view><text class="text-gray text-sm">{{Detail.Remark}}</text></view>
+      <view>
+        <text class="text-pink">{{'¥'+Detail.TotalPrice}}</text>
+        <text class="text-gray text-decoration text-xs margin-left-xs">{{'¥'+Detail.OriginPrice}}</text>
+      </view>
+    </view>
+    <view class="cu-tag radius light line-pink">{{ Detail.Num }}人团</view>
+  </view>
+  <scroll-view scroll-y="true" class="bg-white" style="height:{{app.globalData.StatusHeight-160}}px;">
+    <view class="ingList flex justify-center flex-direction">
+      <view class="text-center margin">
+        <view><text class="text-lg text-black0">还差{{ Detail.RestNum }}人，喊小伙伴行动起来吧！</text> </view>
+        <view><text class="text-sm text-black0">失效时间：{{Detail.EndTime}}</text> </view>
+      </view>
+      <view class="text-center">
+        <image class="avatar {{index === 0 ? 'chief':''}}" wx:for="{{Detail.PinTuanIngList}}" wx:key="index"
+          src="{{item.HeadImgUrl}}">
+        </image>
+        <image class="avatar" wx:for="{{ Detail.Num -Detail.PinTuanIngList.length}}" wx:key="index"
+          src="{{IconUrl}}avatar.jpg"></image>
+      </view>
+    </view>
+    <view class="btn">
+      <van-button wx:if="{{Detail.RestNum > 0}}" color="#e03997" size="small" block data-type="Pay"
+        bindtap="handleJoin">参与拼团
+      </van-button>
+      <van-button wx:if="{{Detail.RestNum !== 0}}" color="#e03997" plain size="small" block custom-class="margin-top-sm"
+        data-type="Share" bindtap="handleJoin">邀请好友
+      </van-button>
+      <view wx:if="{{Detail.RestNum === 0}}" class="text-center"><text class="text-pink">参团成功</text></view>
+    </view>
+    <view class='cu-tabbar-height bg-white'></view>
+  </scroll-view>
+</view>
+<ShareType isShow="{{isShareShow}}" QrParams="{{QrParams}}"></ShareType>

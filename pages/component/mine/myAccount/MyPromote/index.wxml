@@ -1,0 +1,46 @@
+<cu-custom isText="我的邀请记录" isCustom="{{true}}"></cu-custom>
+<van-cell-group>
+  <van-field model:value="{{ SearchParam }}" center clearable placeholder="请输入好友姓名/手机号进行查询" bind:clear="handleClear"
+    border="{{ false }}" use-button-slot>
+    <van-button slot="button" disabled="{{ListItem.length <= 0}}" size="mini" color="#e03997" plain
+      bindtap="handleSearch">查询</van-button>
+  </van-field>
+</van-cell-group>
+<view wx:if="{{ListItem.length > 0}}" class="heitgh100">
+  <scroll-view scroll-y style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower='handleLower'>
+
+    <view class="promote position-relative flex padding-sm bg-white align-center margin-top-xs">
+      <view>
+        <image lazy-load class="width100 height100" mode="scaleToFill" src="{{IconUrl}}board.png"></image>
+        <text class="level">{{Level}}</text>
+      </view>
+      <view class="margin-left-sm">
+        <view><text class="text-black0 text-sm">{{Detail.PromoteName}} 的分享福利</text></view>
+        <view><text class="text-black0 text-sm">直接贡献额度:{{Detail.Commission}}</text></view>
+      </view>
+      <view><text class="text-black0 text-sm">直属推荐:{{Detail.Count}}</text></view>
+    </view>
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="promote-list">
+        <view class="padding-sm  margin-top-xs align-center bg-white">
+          <view class="flex justify-between">
+            <view class="text-sm text-black0">{{item.DetailName}}</view>
+            <view wx:if="{{item.CountDetail !==0}}" bindtap="handleDetail" data-detail="{{item}}"><text
+                class="cuIcon-right text-black0"></text></view>
+          </view>
+          <view class="flex justify-between align-center">
+            <view>
+              <view class="text-sm text-gray">推荐人数:{{item.CountDetail}}</view>
+              <view class="text-sm text-gray">推荐时间:{{item.CreateTime}}</view>
+            </view>
+            <text class="text-sm">贡献{{Detail.CommissionName}}:{{item.CommissionDetail}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+    <view class='cu-tabbar-bottom'></view>
+  </scroll-view>
+</view>
+<CommonEmpty ErrorTitle="暂无邀请记录" wx:else></CommonEmpty>
+<van-toast id="van-toast" />

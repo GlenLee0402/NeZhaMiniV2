@@ -1,0 +1,10 @@
+<scroll-view class="bg-white nav">
+  <view class="flex text-center">
+    <block wx:for="{{Tabs}}" wx:key="index">
+      <view class="cu-item flex-sub {{item.Name === Active?'text-pink cur':'text-black0'}}" bindtap="handleActive"
+        data-name="{{item.Name}}"  data-type="{{item.Type}}">
+        {{item.Title}}
+      </view>
+    </block>
+  </view>
+</scroll-view>

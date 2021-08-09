@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-radio": "/vantui/vant-weapp/radio/index",
+    "van-radio-group": "/vantui/vant-weapp/radio-group/index",
+    "van-row": "/vantui/vant-weapp/row/index",
+    "van-col": "/vantui/vant-weapp/col/index",
+    "van-checkbox": "/vantui/vant-weapp/checkbox/index",
+    "van-checkbox-group": "/vantui/vant-weapp/checkbox-group/index"
+  }
+}

@@ -1,0 +1,30 @@
+<cu-custom isText="我的预约" isCustom="{{true}}"></cu-custom>
+
+<scroll-view scroll-y style="height:{{app.globalData.StatusHeight-110}}px;" bindscrolltolower='handleLower'>
+  <view wx:if="{{ListItem.length > 0}}" class="heitgh100">
+    <block wx:for="{{ListItem}}" wx:key="index">
+      <view class="accountList text-sm ">
+        <view class="width100">
+          <view class="flex justify-between align-center">
+            <view><text class="text-black0">{{Types[item.Type]}}</text></view>
+            <view><text class="text-black0">{{item.HospitalName}}</text></view>
+          </view>
+          <view class="flex justify-between align-center">
+            <view class="basis-lg"><text>{{item.ChargeName}}</text></view>
+            <view wx:if="{{item.UserName !==''}}"><text>{{'医生:'+item.UserName}}</text></view>
+          </view>
+        </view>
+      </view>
+      <view class="coupon-time bg-white margin-lr-sm flex justify-between align-center padding-sm text-sm">
+        <view>
+          <text class="text-gray">{{'预约日期:'+item.AppointmentDate}}</text>
+        </view>
+        <view>
+          <text class="text-gray">{{'预约时间:'+item.AppointmentStartTime}}-{{ item.AppointmentEndTime }}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <CommonEmpty wx:else></CommonEmpty>
+  <van-divider wx:if="{{ListItem.length > 0}}" dashed contentPosition="center">已经到底啦</van-divider>
+</scroll-view>
